@@ -38,11 +38,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AgentLedgerHeads", t => t.AgentLedgerHeadId, cascadeDelete: true)
-                .ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgers", t => t.BankAccountLedgerId)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId)
                 .Index(t => t.AgentLedgerHeadId)
                 .Index(t => t.AgentId)
                 .Index(t => t.GeneralLedgerId)
@@ -70,7 +65,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
             
             CreateTable(
@@ -112,7 +106,6 @@
                         ClaimValue = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -124,7 +117,6 @@
                         UserId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -135,8 +127,6 @@
                         RoleId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             
@@ -158,10 +148,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgerHeads", t => t.BankAccountLedgerHeadId, cascadeDelete: true)
-                .ForeignKey("dbo.BankAccounts", t => t.BankAccountId, cascadeDelete: true)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId)
                 .Index(t => t.BankAccountId)
                 .Index(t => t.BankAccountLedgerHeadId)
                 .Index(t => t.GeneralLedgerId)
@@ -179,7 +165,6 @@
                         GeneralLedgerHeadId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.GeneralLedgerHeads", t => t.GeneralLedgerHeadId)
                 .Index(t => t.LedgerHead, unique: true, name: "IX_FirstAndSecond")
                 .Index(t => t.GeneralLedgerHeadId);
             
@@ -208,7 +193,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
             
             CreateTable(
@@ -226,8 +210,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.GeneralLedgerHeads", t => t.GeneralLedgerHeadId, cascadeDelete: true)
                 .Index(t => t.GeneralLedgerHeadId)
                 .Index(t => t.ApplicationUserId);
             
@@ -294,8 +276,6 @@
                         SysDateTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
                 .Index(t => t.InvoiceId)
                 .Index(t => t.ApplicationUserId);
             
@@ -329,10 +309,6 @@
                         PaidToVendor = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
-                .ForeignKey("dbo.Airlines", t => t.AirlinesId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.Vendors", t => t.VendorId, cascadeDelete: true)
                 .Index(t => t.AgentId)
                 .Index(t => t.AirlinesId)
                 .Index(t => t.ApplicationUserId)
@@ -355,7 +331,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
             
             CreateTable(
@@ -377,7 +352,6 @@
                         Status = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
                 .Index(t => t.InvoiceId);
             
             CreateTable(
@@ -397,12 +371,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AgentLedgers", t => t.AgentLedgerId, cascadeDelete: true)
-                //.ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgers", t => t.BankAccountLedgerId)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId, cascadeDelete: true)
-                //.ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
                 .Index(t => t.InvoiceId)
                 .Index(t => t.AgentId)
                 .Index(t => t.GeneralLedgerId)
@@ -427,12 +395,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgers", t => t.BankAccountLedgerId)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
-                .ForeignKey("dbo.VendorLedgers", t => t.VendorLedgerId, cascadeDelete: true)
-                //.ForeignKey("dbo.Vendors", t => t.VendorId, cascadeDelete: true)
                 .Index(t => t.InvoiceId)
                 .Index(t => t.VendorId)
                 .Index(t => t.GeneralLedgerId)
@@ -457,11 +419,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgers", t => t.BankAccountLedgerId)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId)
-                .ForeignKey("dbo.VendorLedgerHeads", t => t.VendorLedgerHeadId, cascadeDelete: true)
-                //.ForeignKey("dbo.Vendors", t => t.VendorId, cascadeDelete: true)
                 .Index(t => t.VendorLedgerHeadId)
                 .Index(t => t.GeneralLedgerId)
                 .Index(t => t.BankAccountLedgerId)
@@ -502,9 +459,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
-                //.ForeignKey("dbo.Vendors", t => t.VendorId, cascadeDelete: true)
                 .Index(t => t.VendorId)
                 .Index(t => t.InvoiceId)
                 .Index(t => t.ApplicationUserId);
@@ -528,7 +482,6 @@
                         FlightDate = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId, cascadeDelete: true)
                 .Index(t => t.InvoiceId);
             
             CreateTable(
@@ -543,9 +496,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgers", t => t.BankAccountLedgerId)
-                .ForeignKey("dbo.BankAccounts", t => t.BankAccountId, cascadeDelete: true)
                 .Index(t => t.BankAccountLedgerId)
                 .Index(t => t.BankAccountId)
                 .Index(t => t.ApplicationUserId);
@@ -566,11 +516,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccounts", t => t.BankAccountId, cascadeDelete: true)
-                .ForeignKey("dbo.InvoicePayments", t => t.InvoicePaymentId)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId)
-                .ForeignKey("dbo.OtherInvoices", t => t.OtherInvoiceId)
                 .Index(t => t.InvoiceId)
                 .Index(t => t.OtherInvoiceId)
                 .Index(t => t.InvoicePaymentId)
@@ -598,10 +543,6 @@
                         Status = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.OtherInvoiceTypes", t => t.OtherInvoiceTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Vendors", t => t.VendorId, cascadeDelete: true)
                 .Index(t => t.AgentId)
                 .Index(t => t.VendorId)
                 .Index(t => t.OtherInvoiceTypeId)
@@ -617,7 +558,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
             
             CreateTable(
@@ -642,11 +582,6 @@
                         ProfileType = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId)
-                .ForeignKey("dbo.InvoicePayments", t => t.InvoicePaymentId)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId)
-                .ForeignKey("dbo.OtherInvoices", t => t.OtherInvoiceId)
                 .Index(t => t.InvoiceId)
                 .Index(t => t.OtherInvoiceId)
                 .Index(t => t.InvoicePaymentId)
@@ -669,11 +604,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccounts", t => t.BankAccountId, cascadeDelete: true)
-                .ForeignKey("dbo.InvoicePayments", t => t.InvoicePaymentId)
-                .ForeignKey("dbo.Invoices", t => t.InvoiceId)
-                .ForeignKey("dbo.OtherInvoices", t => t.OtherInvoiceId)
                 .Index(t => t.InvoiceId)
                 .Index(t => t.OtherInvoiceId)
                 .Index(t => t.InvoicePaymentId)
@@ -691,8 +621,6 @@
                         SysDateTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.OtherInvoices", t => t.OtherInvoiceId, cascadeDelete: true)
                 .Index(t => t.OtherInvoiceId)
                 .Index(t => t.ApplicationUserId);
             
@@ -713,12 +641,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AgentLedgers", t => t.AgentLedgerId, cascadeDelete: true)
-                //.ForeignKey("dbo.Agents", t => t.AgentId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgers", t => t.BankAccountLedgerId)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId, cascadeDelete: true)
-                //.ForeignKey("dbo.OtherInvoices", t => t.OtherInvoiceId, cascadeDelete: true)
                 .Index(t => t.OtherInvoiceId)
                 .Index(t => t.AgentId)
                 .Index(t => t.GeneralLedgerId)
@@ -743,12 +665,6 @@
                         ApplicationUserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
-                .ForeignKey("dbo.BankAccountLedgers", t => t.BankAccountLedgerId)
-                .ForeignKey("dbo.GeneralLedgers", t => t.GeneralLedgerId)
-                .ForeignKey("dbo.OtherInvoices", t => t.OtherInvoiceId, cascadeDelete: true)
-                .ForeignKey("dbo.VendorLedgers", t => t.VendorLedgerId, cascadeDelete: true)
-                //.ForeignKey("dbo.Vendors", t => t.VendorId, cascadeDelete: true)
                 .Index(t => t.OtherInvoiceId)
                 .Index(t => t.VendorId)
                 .Index(t => t.GeneralLedgerId)
