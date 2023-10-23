@@ -11,10 +11,10 @@ namespace Billing.Entities
     {
         [Key]
         public int Id { get; set; }
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         [MaxLength(150), MinLength(6)]
         public string Name { get; set; }
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         [MaxLength(20), MinLength(2)]
         public string Code { get; set; }
     }

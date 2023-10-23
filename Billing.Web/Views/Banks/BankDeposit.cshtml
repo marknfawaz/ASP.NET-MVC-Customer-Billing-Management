@@ -21,7 +21,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.BankNames, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.DropDownList("BankNames", EnumHelper.GetSelectList(typeof(Billing.ViewModel.BankName)), "Select Bank", new { @class = "form-control", id = "BankNames", required = "required", @onchange = "return getBankAccounts()", @autofocus = "on" })
+                                @Html.DropDownList("BankNames", Html.GetEnumSelectList(typeof(Billing.Entities.BankName)), "Select Bank", new { @class = "form-control", id = "BankNames", required = "required", @onchange = "return getBankAccounts()", @autofocus = "on" })
                                 @Html.ValidationMessageFor(model => model.BankNames, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 no-pad-top">Method</label>
                             <div class="col-md-10">
-                                @Html.DropDownList("TransactionMethod", EnumHelper.GetSelectList(typeof(Billing.ViewModel.BankDepositPaymentMethod)), "Payment Method", new { @class = "form-control", id = "TransactionMethod", required = "required" })
+                                @Html.DropDownList("TransactionMethod", Html.GetEnumSelectList(typeof(Billing.Entities.BankDepositPaymentMethod)), "Payment Method", new { @class = "form-control", id = "TransactionMethod", required = "required" })
                             </div>
                         </div>
                         <div id="BankDepositCheque" style="display: none;">

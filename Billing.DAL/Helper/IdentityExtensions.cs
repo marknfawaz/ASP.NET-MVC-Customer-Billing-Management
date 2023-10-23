@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Security.Claims;
 using System.Security.Principal;
 
@@ -16,7 +15,7 @@ namespace Billing.DAL.Helpers
             var ci = identity as ClaimsIdentity;
             if (ci != null)
             {
-                return ci.FindFirstValue("DisplayName");
+                return identity.Name;
             }
             return null;
         }

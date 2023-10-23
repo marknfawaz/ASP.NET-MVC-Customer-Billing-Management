@@ -9,8 +9,7 @@ namespace Billing.DAL.Helpers
 {
     public static class CommonHelper
     {
-        private static ApplicationDbContext db = new ApplicationDbContext();
-        public static string GetUserRole(string Id)
+        public static string GetUserRole(string Id, ApplicationDbContext db)
         {
             if (Id == null)
             {
@@ -195,7 +194,7 @@ namespace Billing.DAL.Helpers
                 return iSegment;
             }
         }
-        public static Agent DetectProfileIdForInvoice(ProfileType pType, int? AgentId, int? AgentId2, int? CusType, string User, string Email, string Mobile, string Name, string Postcode)
+        public static Agent DetectProfileIdForInvoice(ProfileType pType, int? AgentId, int? AgentId2, int? CusType, string User, string Email, string Mobile, string Name, string Postcode, ApplicationDbContext db)
         {
             int ProfileId = 0;
             Agent agent = new Agent();

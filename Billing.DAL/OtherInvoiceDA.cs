@@ -1,10 +1,10 @@
-﻿using Billing.DAL.Parameters;
+using Billing.DAL.Parameters;
 using Billing.Entities;
 using Billing.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Billing.DAL
 {
@@ -18,7 +18,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetOtheInvoiceType_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -33,6 +32,7 @@ namespace Billing.DAL
                             invTypeList.Add(invType);
                         }
                     }
+
                     reader.Close();
                     return invTypeList;
                 }
@@ -42,6 +42,7 @@ namespace Billing.DAL
                 return invTypeList;
             }
         }
+
         public OtherInvoiceType GetOtherInvoiceByTypeId(int TypeID)
         {
             OtherInvoiceType invType = new OtherInvoiceType();
@@ -50,7 +51,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetOtherInvoiceByTypeId_SP");
                     DataAccess.AddInParameter(command, "@TypeID", SqlDbType.Int, TypeID);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -64,6 +64,7 @@ namespace Billing.DAL
                             invType.ApplicationUserId = reader["ApplicationUserId"] is DBNull ? string.Empty : (String)reader["ApplicationUserId"];
                         }
                     }
+
                     reader.Close();
                     return invType;
                 }
@@ -73,6 +74,7 @@ namespace Billing.DAL
                 return invType;
             }
         }
+
         public bool UpdateOtherInvoiceType(OtherInvoiceType model)
         {
             try
@@ -81,7 +83,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateOtherInvoiceType_SP");
                     DataAccess.AddInParameter(command, "@TableId", SqlDbType.Int, model.Id);
                     DataAccess.AddInParameter(command, "@InvoiceType", SqlDbType.VarChar, model.InvoiceType);
@@ -94,6 +95,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertOtherInvoiceType(OtherInvoiceType model)
         {
             try
@@ -102,7 +104,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertOtherInvoiceType_SP");
                     DataAccess.AddInParameter(command, "@InvoiceType", SqlDbType.VarChar, model.InvoiceType);
                     DataAccess.AddInParameter(command, "@UserID", SqlDbType.VarChar, model.ApplicationUserId);
@@ -115,6 +116,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertNewOtherInvoice(OtherInvoice model)
         {
             try
@@ -123,7 +125,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertNewOtherInvoice_SP");
                     DataAccess.AddInParameter(command, "AgentId", SqlDbType.Int, model.AgentId);
                     DataAccess.AddInParameter(command, "@VendorId", SqlDbType.Int, model.VendorId);
@@ -144,6 +145,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public List<OtherInvoiceList> GetLatestOtherInvoiceList()
         {
             List<OtherInvoiceList> otherInvList = new List<OtherInvoiceList>();
@@ -152,7 +154,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetLatestOtherInvoiceList_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -175,6 +176,7 @@ namespace Billing.DAL
                             otherInvList.Add(otherInv);
                         }
                     }
+
                     reader.Close();
                     return otherInvList;
                 }
@@ -184,6 +186,7 @@ namespace Billing.DAL
                 return otherInvList;
             }
         }
+
         public List<OtherInvoiceList> GetFilteredOtherInvoiceList(DateTime FromDate, DateTime ToDate, int? AgentId, string UsersId, int? TypesId)
         {
             List<OtherInvoiceList> otherInvList = new List<OtherInvoiceList>();
@@ -192,7 +195,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetFilteredOtherInvoiceList_SP");
                     DataAccess.AddInParameter(command, "@FromDate", SqlDbType.VarChar, FromDate.ToString("MM/dd/yyyy"));
                     DataAccess.AddInParameter(command, "@ToDate", SqlDbType.VarChar, ToDate.ToString("MM/dd/yyyy"));
@@ -220,6 +222,7 @@ namespace Billing.DAL
                             otherInvList.Add(otherInv);
                         }
                     }
+
                     reader.Close();
                     return otherInvList;
                 }
@@ -229,6 +232,7 @@ namespace Billing.DAL
                 return otherInvList;
             }
         }
+
         public List<OtherInvoiceList> GetVendorOutstandingOtherInvoiceList(int VendorId)
         {
             List<OtherInvoiceList> otherInvList = new List<OtherInvoiceList>();
@@ -237,7 +241,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetVendorOutstandingOtherInvoiceList_SP");
                     DataAccess.AddInParameter(command, "@VendorId", SqlDbType.Int, VendorId);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -261,6 +264,7 @@ namespace Billing.DAL
                             otherInvList.Add(otherInv);
                         }
                     }
+
                     reader.Close();
                     return otherInvList;
                 }
@@ -270,6 +274,7 @@ namespace Billing.DAL
                 return otherInvList;
             }
         }
+
         public List<OtherInvoiceList> GetAgentOutstandingOtherInvoiceList(int AgentId)
         {
             List<OtherInvoiceList> otherInvList = new List<OtherInvoiceList>();
@@ -278,7 +283,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetAgentOutstandingOtherInvoiceList_SP");
                     DataAccess.AddInParameter(command, "@AgentId", SqlDbType.Int, AgentId);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -302,6 +306,7 @@ namespace Billing.DAL
                             otherInvList.Add(otherInv);
                         }
                     }
+
                     reader.Close();
                     return otherInvList;
                 }
@@ -311,6 +316,7 @@ namespace Billing.DAL
                 return otherInvList;
             }
         }
+
         public OtherInvoiceDetailsViewModel GetOtherInvoiceDetailsByInvoiceId(int InvoiceId)
         {
             OtherInvoiceDetailsViewModel othrInv = new OtherInvoiceDetailsViewModel();
@@ -319,7 +325,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetOtherInvoiceDetailsByInvoiceId_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceId);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -338,7 +343,7 @@ namespace Billing.DAL
                             othrInv.EDP = reader["EDP"] is DBNull ? string.Empty : Convert.ToString(reader["EDP"]);
                             othrInv.InvoiceId = reader["InvoiceId"] is DBNull ? 0 : Convert.ToInt32(reader["InvoiceId"]);
                             othrInv.InvoiceType = reader["InvoiceType"] is DBNull ? string.Empty : Convert.ToString(reader["InvoiceType"]);
-                            othrInv.InvType = reader["InvType"] is DBNull ? 0 : Convert.ToInt32(reader["InvType"]); 
+                            othrInv.InvType = reader["InvType"] is DBNull ? 0 : Convert.ToInt32(reader["InvType"]);
                             othrInv.Paid = reader["Paid"] is DBNull ? 0 : Convert.ToDouble(reader["Paid"]);
                             othrInv.PersonName = reader["PersonName"] is DBNull ? string.Empty : Convert.ToString(reader["PersonName"]);
                             othrInv.Reference = reader["Reference"] is DBNull ? string.Empty : Convert.ToString(reader["Reference"]);
@@ -350,6 +355,7 @@ namespace Billing.DAL
                             othrInv.VInvNo = reader["VInvNo"] is DBNull ? string.Empty : Convert.ToString(reader["VInvNo"]);
                         }
                     }
+
                     reader.Close();
                     return othrInv;
                 }
@@ -359,6 +365,7 @@ namespace Billing.DAL
                 return othrInv;
             }
         }
+
         public List<InvoiceDetailsLogViewModel> GetOtherInvoiceLogInfo(int InvoiceId)
         {
             List<InvoiceDetailsLogViewModel> logList = new List<InvoiceDetailsLogViewModel>();
@@ -367,7 +374,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetOtherInvoiceLogInfoForInvoiceDetails_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceId);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -383,6 +389,7 @@ namespace Billing.DAL
                             logList.Add(log);
                         }
                     }
+
                     reader.Close();
                     return logList;
                 }
@@ -392,6 +399,7 @@ namespace Billing.DAL
                 return logList;
             }
         }
+
         public List<OtherInvoiceDetailsPaymentViewModel> GetOtherInvoicePaymentList(int InvoiceId)
         {
             List<OtherInvoiceDetailsPaymentViewModel> InvPayment = new List<OtherInvoiceDetailsPaymentViewModel>();
@@ -400,7 +408,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetOtherInvoicePaymentList_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -415,6 +422,7 @@ namespace Billing.DAL
                             InvPayment.Add(_InvPayment);
                         }
                     }
+
                     reader.Close();
                     return InvPayment;
                 }
@@ -424,6 +432,7 @@ namespace Billing.DAL
                 return InvPayment;
             }
         }
+
         public bool InsertNewRemarksToOtherInvoice(OtherInvoiceLog model)
         {
             try
@@ -432,7 +441,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertNewRemarksToOtherInvoice_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, (int)model.OtherInvoiceId);
                     DataAccess.AddInParameter(command, "@ApplicationUserId", SqlDbType.VarChar, model.ApplicationUserId);
@@ -446,6 +454,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateOtherInvoiceAgent(string UserID, int InvoiceId, int NewAgent)
         {
             try
@@ -454,7 +463,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateOtherInvoiceAgent_SP");
                     DataAccess.AddInParameter(command, "@UserID", SqlDbType.VarChar, UserID);
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceId);
@@ -468,6 +476,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateOtherInvoiceVendor(string UserID, int InvoiceId, int NewVendor)
         {
             try
@@ -476,7 +485,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateOtherInvoiceVendor_SP");
                     DataAccess.AddInParameter(command, "@UserID", SqlDbType.VarChar, UserID);
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceId);
@@ -490,6 +498,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateOtherInvoicePaymentStatus(int InvoiceId, int PaymentStatus, string UserID)
         {
             try
@@ -511,6 +520,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateOtherInvoicePaymentStatusVendor(int InvoiceId, int PaymentStatus, string UserID)
         {
             try
@@ -532,6 +542,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateOtherInvoiceBasicInfo(string UserID, int InvoiceId, int OtherInvoiceTypeId, string ExpectedPayDate, string Reference, string VendorInvNo, string Details, double CustomerAgentAmount)
         {
             try
@@ -558,6 +569,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateOtherInvoiceCurrentUser(string userID, int InvoiceID)
         {
             try
@@ -566,7 +578,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateOtherInvoiceExistingUser_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceID);
                     DataAccess.AddInParameter(command, "@UserID", SqlDbType.VarChar, userID);
@@ -579,6 +590,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool OtherInvoicePaymentCashVoucher(CashTransaction model)
         {
             try
@@ -587,7 +599,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertOtherInvoicePaymentCashVoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Remarks);
@@ -602,6 +613,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool AddCreditCardPaymentDetailsOtherInvoice(CCardDetail Obj)
         {
             try
@@ -610,7 +622,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "AddCreditCardPaymentDetailsOtherInvoice_SP");
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, Obj.Notes);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, Obj.Amount);
@@ -637,6 +648,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool AddDebitCardPaymentDetailsOtherInvoice(DCardDetail Obj)
         {
             try
@@ -645,7 +657,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "AddDebitCardPaymentDetailsOtherInvoice_SP");
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, Obj.Notes);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, Obj.Amount);
@@ -665,6 +676,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool AddBankDepositPaymentDetailsOtherInvoice(BankPaymentDetail Obj)
         {
             try
@@ -673,7 +685,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "AddBankDepositPaymentDetailsOtherInvoice_SP");
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, Obj.Notes);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, Obj.Amount);
@@ -690,6 +701,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InvoicePaymentInvoiceLogVendorPaymentOtherInvoice(BulkPaymentVendorCashInvPaymentInvLog model)
         {
             try
@@ -698,7 +710,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertInvoicePaymentInvoiceLogBulkPaymentOtherInvoice_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, model.InvoiceId);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
@@ -718,6 +729,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public string BulkPaymentCashVoucherOtherInvoice(VendorBulkPaymentCashVoucher model)
         {
             try
@@ -726,14 +738,12 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBulkPaymentVendorCashVoucherOtherInvoice_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
                     DataAccess.AddInParameter(command, "@UserId", SqlDbType.VarChar, model.UserId);
                     DataAccess.AddInParameter(command, "@VendorId", SqlDbType.Int, model.VendorId);
                     DataAccess.AddInParameter(command, "@LedgerDate", SqlDbType.VarChar, model.LedgerDate);
-
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
                     {
@@ -742,6 +752,7 @@ namespace Billing.DAL
                             status = reader["IndentityVals"] is DBNull ? string.Empty : Convert.ToString(reader["IndentityVals"]);
                         }
                     }
+
                     reader.Close();
                     return status;
                 }
@@ -751,6 +762,7 @@ namespace Billing.DAL
                 return string.Empty;
             }
         }
+
         public string VendorBulkPaymentCreditCardOtherInvoice(VendorBulkPaymentCreditCard model)
         {
             try
@@ -759,7 +771,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBulkPaymentVendorCreditCard_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
@@ -771,7 +782,6 @@ namespace Billing.DAL
                     DataAccess.AddInParameter(command, "@CardHolder", SqlDbType.VarChar, model.CardHolder);
                     DataAccess.AddInParameter(command, "@ExtraAmount", SqlDbType.VarChar, model.ExtraAmount);
                     DataAccess.AddInParameter(command, "@BankDate", SqlDbType.VarChar, model.BankDate);
-
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
                     {
@@ -780,6 +790,7 @@ namespace Billing.DAL
                             status = reader["IndentityVals"] is DBNull ? string.Empty : Convert.ToString(reader["IndentityVals"]);
                         }
                     }
+
                     reader.Close();
                     return status;
                 }

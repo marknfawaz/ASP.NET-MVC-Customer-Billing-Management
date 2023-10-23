@@ -1,0 +1,2947 @@
+==========
+References
+==========
+Billing.Web
+System.Web.Optimization
+System.Web.Mvc
+Microsoft.AspNet.Identity
+System.Threading.Tasks
+Billing.Entities
+Microsoft.Owin
+Microsoft.AspNet.Identity.Owin
+Billing.DAL
+System
+Microsoft.Owin.Security.DataProtection
+Microsoft.Owin.Security
+System.Security.Claims
+Microsoft.AspNet.Identity.EntityFramework
+System.Web.Routing
+Owin
+Billing.Web.Controllers
+System.Web
+System.Linq
+System.Web.Script.Serialization
+Billing.ViewModel
+System.Net
+System.Data.Entity
+System.Data.Entity.Infrastructure
+System.Collections.Generic
+System.Security.Principal
+Vereyon.Web
+Billing.DAL.Parameters
+Billing.DAL.Helpers
+System.Globalization
+System.Collections.Specialized
+<global namespace>
+Billing.Web.Migrations
+Billing.Web.Smtp
+System.Net.Mail
+Microsoft.Owin.Security.Cookies
+System.Data
+System.Reflection
+System.Runtime.CompilerServices
+System.Runtime.InteropServices
+project.all
+System.Data.SqlClient
+System.Configuration
+System.Data.Common
+System.ComponentModel.DataAnnotations
+Billing.DAL.Migrations
+System.Data.Entity.Migrations
+System.Data.Entity.Migrations.Builders
+System.CodeDom.Compiler
+System.Data.Entity.Migrations.Infrastructure
+System.Resources
+System.ComponentModel.DataAnnotations.Schema
+
+===============
+DownloadedFiles
+===============
+system.configuration.json
+system.data.sqlclient.json
+project.all.json
+system.data.entity.json
+system.web.json
+system.collections.specialized.json
+owin.json
+microsoft.owin.security.json
+microsoft.owin.security.dataprotection.json
+microsoft.aspnet.identity.owin.json
+microsoft.owin.json
+system.web.mvc.json
+
+==============
+ProjectResults
+==============
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Entities\Billing.Entities.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.AspNet.Identity.EntityFramework,2.2.1->10.1.8071
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.ViewModel\Billing.ViewModel.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.ViewModel\ManageViewModels.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: AuthenticationScheme
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\Billing.DAL.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.AspNet.Identity.EntityFramework,2.2.1->10.1.8071
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+Microsoft.Data.SqlClient,5.0.1
+Microsoft.EntityFrameworkCore,*
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\ReportDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\AgentDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\Migrations\Configuration.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\SearchDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\IdentityModels.cs
+---------------------------
+
+Action Type: Class
+Action Name: AddMethod
+Action Value: protectedoverridevoidOnConfiguring(DbContextOptionsBuilderoptionsBuilder){/*UseConfigurationfromstaticConfigurationManagertoaccessconnectionstringinappsettings.json.Examplebelow:optionsBuilder.UseSqlServer(ConfigurationManager.Configuration.GetConnectionString("CONNECTIONSTRINGNAME"));*/base.OnConfiguring(optionsBuilder);}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\OtherInvoiceDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\VendorDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\AccountingDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\BankDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\DataAccess.cs
+---------------------------
+
+Action Type: MemberAccess
+Action Name: RemoveMemberAccess
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\UserDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Billing.Web.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.AspNet.Identity.EntityFramework,2.2.1->10.1.8071
+Sendgrid,8.0.5->9.0.0
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+Microsoft.EntityFrameworkCore,*
+Microsoft.AspNetCore.Owin,6.0.11
+Microsoft.AspNetCore.Diagnostics,*
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\OtherInvoiceController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\FilterConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Global.asax.cs
+---------------------------
+
+Action Type: Class
+Action Name: RemoveBaseClass
+Action Value: IHttpHandler
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: AddExpression
+Action Value: RequestDelegate_next=null;
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: CreateConstructor
+Action Value: {"types":"RequestDelegate","identifiers":"next"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: ChangeMethodName
+Action Value: {"existingMethodName":"ProcessRequest","newMethodName":"Invoke"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ReplaceMethodModifiers
+Action Value: {"methodName":"Invoke","modifiers":"publicasync"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ChangeMethodToReturnTaskType
+Action Value: Invoke
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: System.Threading.Tasks
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AccountingController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\ManageController.cs
+---------------------------
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheTwoFactorBrowserRememberedAsync(TUser)methodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheGetExternalAuthenticationSchemesAsyncmethodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheGetExternalLoginInfoAsyncmethodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 0
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\Startup.Auth.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: IApplicationBuilder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"PleasereplaceCreatePerOwinContext<T>(System.Func<T>)andaddanewConfigureServicesmethod:publicvoidConfigureServices(IServiceCollectionservices){RegisteryourservicehereinsteadofusingCreatePerOwinContext}.Forexample,app.CreatePerOwinContext(ApplicationDbContext.Create);wouldbecome:services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(config.GetConnectionString(\"DefaultConnection\")));","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"PleasereplaceCreatePerOwinContext<T>(System.Func<Microsoft.AspNet.Identity.Owin.IdentityFactoryOptions<T>,Microsoft.Owin.IOwinContext,T>)andaddanewConfigureServicesmethod:publicvoidConfigureServices(IServiceCollectionservices){RegisteryourservicehereinsteadofusingCreatePerOwinContext}.Forexample,app.CreatePerOwinContext(ApplicationDbContext.Create);wouldbecome:services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(config.GetConnectionString(\"DefaultConnection\")));","dontUseCTAPrefix":""}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Builder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\CompanyInfoController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Migrations\Configuration.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\RouteConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AirportCodesController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Startup.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: IApplicationBuilder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Builder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AccountController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheGetExternalLoginInfoAsyncmethodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: ReplaceMethodAndParameters
+Action Value: {"oldMethod":"SignOut","newMethod":"SignOutAsync","newParameters":"()"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoucanonlypassinasingleschemeasaparameterandyoucanalsoincludeanAuthenticationPropertiesobjectaswell.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Expression
+Action Name: AddAwaitOperator
+Action Value: 
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: ReplaceMethodAndParameters
+Action Value: {"oldMethod":"Challenge","newMethod":"ChallengeAsync","newParameters":"()"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"PleaseuseyourAuthenticationPropertiesobjectwiththisChallengeAsyncapiifneeded.Youcanalsoincludeascheme.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 0
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AirlinesController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 3
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Project
+Action Name: CreateNet6FolderHierarchy
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Project
+Action Name: MigrateConfig
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\HomeController.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\BanksController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\InvoiceController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\VendorController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\ReportController.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AgentController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 3
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\IdentityConfig.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 3
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"Create","newMethod":"CreateProtector"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Entities\Billing.Entities.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.AspNet.Identity.EntityFramework,2.2.1->10.1.8071
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.ViewModel\Billing.ViewModel.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.ViewModel\ManageViewModels.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: AuthenticationScheme
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\Billing.DAL.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.AspNet.Identity.EntityFramework,2.2.1->10.1.8071
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+Microsoft.Data.SqlClient,5.0.1
+Microsoft.EntityFrameworkCore,*
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\ReportDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\AgentDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\Migrations\Configuration.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\SearchDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\IdentityModels.cs
+---------------------------
+
+Action Type: Class
+Action Name: AddMethod
+Action Value: protectedoverridevoidOnConfiguring(DbContextOptionsBuilderoptionsBuilder){/*UseConfigurationfromstaticConfigurationManagertoaccessconnectionstringinappsettings.json.Examplebelow:optionsBuilder.UseSqlServer(ConfigurationManager.Configuration.GetConnectionString("CONNECTIONSTRINGNAME"));*/base.OnConfiguring(optionsBuilder);}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\OtherInvoiceDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\VendorDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\AccountingDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\BankDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\DataAccess.cs
+---------------------------
+
+Action Type: MemberAccess
+Action Name: RemoveMemberAccess
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.DAL\UserDA.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Billing.Web.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net7.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.AspNet.Identity.EntityFramework,2.2.1->10.1.8071
+Sendgrid,8.0.5->9.0.0
+Newtonsoft.Json,6.0.4->9.0.1
+---------------------------
+Action packages:
+---------------------------
+Microsoft.EntityFrameworkCore,*
+Microsoft.AspNetCore.Owin,6.0.11
+Microsoft.AspNetCore.Diagnostics,*
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\OtherInvoiceController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\FilterConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Global.asax.cs
+---------------------------
+
+Action Type: Class
+Action Name: RemoveBaseClass
+Action Value: IHttpHandler
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: AddExpression
+Action Value: RequestDelegate_next=null;
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: CreateConstructor
+Action Value: {"types":"RequestDelegate","identifiers":"next"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: ChangeMethodName
+Action Value: {"existingMethodName":"ProcessRequest","newMethodName":"Invoke"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ReplaceMethodModifiers
+Action Value: {"methodName":"Invoke","modifiers":"publicasync"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ChangeMethodToReturnTaskType
+Action Value: Invoke
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: System.Threading.Tasks
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AccountingController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\ManageController.cs
+---------------------------
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheTwoFactorBrowserRememberedAsync(TUser)methodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheGetExternalAuthenticationSchemesAsyncmethodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheGetExternalLoginInfoAsyncmethodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 0
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\Startup.Auth.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: IApplicationBuilder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"PleasereplaceCreatePerOwinContext<T>(System.Func<T>)andaddanewConfigureServicesmethod:publicvoidConfigureServices(IServiceCollectionservices){RegisteryourservicehereinsteadofusingCreatePerOwinContext}.Forexample,app.CreatePerOwinContext(ApplicationDbContext.Create);wouldbecome:services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(config.GetConnectionString(\"DefaultConnection\")));","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"PleasereplaceCreatePerOwinContext<T>(System.Func<Microsoft.AspNet.Identity.Owin.IdentityFactoryOptions<T>,Microsoft.Owin.IOwinContext,T>)andaddanewConfigureServicesmethod:publicvoidConfigureServices(IServiceCollectionservices){RegisteryourservicehereinsteadofusingCreatePerOwinContext}.Forexample,app.CreatePerOwinContext(ApplicationDbContext.Create);wouldbecome:services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(config.GetConnectionString(\"DefaultConnection\")));","dontUseCTAPrefix":""}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Builder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\CompanyInfoController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Migrations\Configuration.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\RouteConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AirportCodesController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Startup.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: IApplicationBuilder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Builder
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AccountController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoumustdeclareaMicrosoft.AspNetCore.Identity.SignInManager<TUser>objectandaccesstheGetExternalLoginInfoAsyncmethodtoreplacethisinvocation.","dontUseCTAPrefix":""}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: ReplaceMethodAndParameters
+Action Value: {"oldMethod":"SignOut","newMethod":"SignOutAsync","newParameters":"()"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"YoucanonlypassinasingleschemeasaparameterandyoucanalsoincludeanAuthenticationPropertiesobjectaswell.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Expression
+Action Name: AddAwaitOperator
+Action Value: 
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: ReplaceMethodAndParameters
+Action Value: {"oldMethod":"Challenge","newMethod":"ChallengeAsync","newParameters":"()"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: AddComment
+Action Value: {"comment":"PleaseuseyourAuthenticationPropertiesobjectwiththisChallengeAsyncapiifneeded.Youcanalsoincludeascheme.","dontUseCTAPrefix":""}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 0
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AirlinesController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 3
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Project
+Action Name: CreateNet6FolderHierarchy
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Project
+Action Name: MigrateConfig
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\HomeController.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\BanksController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\InvoiceController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\VendorController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\ReportController.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\Controllers\AgentController.cs
+---------------------------
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"HttpNotFound","newMethod":"NotFound"}
+Times Run: 3
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.Entity
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.EntityFrameworkCore
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authorization
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\w\Samples\Demo-LLM\ASP.NET-MVC-Customer-Billing-Management - Ported\Billing.Web\App_Start\IdentityConfig.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 3
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Method
+Action Name: ReplaceMethodOnly
+Action Value: {"oldMethod":"Create","newMethod":"CreateProtector"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+
+===========
+BuildErrors
+===========
+
+

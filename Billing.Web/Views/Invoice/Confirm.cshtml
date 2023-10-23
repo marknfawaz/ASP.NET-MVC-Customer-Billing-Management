@@ -11,7 +11,7 @@
                 </div>
                 <div class="body-bar">
 
-                    @using (Html.BeginForm("Booking", "Invoice", null, FormMethod.Post, new { role = "form", @id = "bookingForm", onsubmit = "return CheckCreditLimit()" }))
+                    @using (Html.BeginForm("Booking", "Invoice", null, FormMethod.Post, null, new { role = "form", @id = "bookingForm", onsubmit = "return CheckCreditLimit()" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.InvoiceId)
@@ -176,7 +176,7 @@
                                             @k
                                         </td>
                                         <td>
-                                            @Html.DropDownList(String.Format("PassengerTypes{0}", k), EnumHelper.GetSelectList(typeof(Billing.ViewModel.PassengerType)), "Pax Type", new { @class = "form-control" })
+                                            @Html.DropDownList(String.Format("PassengerTypes{0}", k), Html.GetEnumSelectList(typeof(Billing.Entities.PassengerType)), "Pax Type", new { @class = "form-control" })
                                             <script>
                                             var index = '@k';
                                             var value = '@selected';

@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2">Maritial Status</label>
                             <div class="col-md-10">
-                                @Html.EnumDropDownListFor(model => model.MaritialStatus, htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.MaritialStatus, Html.GetEnumSelectList(typeof(Billing.Entities.MaritialStatus)), htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.MaritialStatus, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2">Gender</label>
                             <div class="col-md-10">
-                                @Html.EnumDropDownListFor(model => model.Gender, htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Gender, Html.GetEnumSelectList(typeof(Billing.Entities.Sex)), htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label class="control-label col-lg-2">Role</label>
                             <div class="col-md-10">
-                                @Html.EnumDropDownListFor(model => model.UserRoles, htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.UserRoles, Html.GetEnumSelectList(typeof(Billing.Entities.UserRole)), htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.UserRoles, "", new { @class = "text-danger" })
                             </div>
                         </div>

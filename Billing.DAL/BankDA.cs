@@ -1,9 +1,9 @@
-﻿using Billing.DAL.Parameters;
+using Billing.DAL.Parameters;
 using Billing.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Billing.DAL
 {
@@ -17,7 +17,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetBankAccountList_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -33,6 +32,7 @@ namespace Billing.DAL
                             bankList.Add(account);
                         }
                     }
+
                     reader.Close();
                     return bankList;
                 }
@@ -42,6 +42,7 @@ namespace Billing.DAL
                 return bankList;
             }
         }
+
         public List<BankAccountLedgerHead> GetBankLedgerHeadList()
         {
             List<BankAccountLedgerHead> balList = new List<BankAccountLedgerHead>();
@@ -50,7 +51,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetBankLedgerHeadList_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -66,6 +66,7 @@ namespace Billing.DAL
                             balList.Add(bal);
                         }
                     }
+
                     reader.Close();
                     return balList;
                 }
@@ -75,6 +76,7 @@ namespace Billing.DAL
                 return balList;
             }
         }
+
         public bool InsertNewBankLedgerHead(BankAccountLedgerHead model)
         {
             try
@@ -83,7 +85,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertNewBankLedgerHead_SP");
                     DataAccess.AddInParameter(command, "@LedgerHead", SqlDbType.VarChar, model.LedgerHead);
                     DataAccess.AddInParameter(command, "@LedgerType", SqlDbType.Int, (int)model.LedgerTypes);
@@ -103,6 +104,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertBankDepositCashVoucher(BankDepositCashVoucher model)
         {
             try
@@ -111,7 +113,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBankDepositCashVoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
@@ -128,6 +129,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertBankDepositChequeVoucher(BankDepositChequeVoucher model)
         {
             try
@@ -136,7 +138,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBankDepositChequeVoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@BankAccountId", SqlDbType.Int, model.BankAccountId);
@@ -157,6 +158,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertBankDepositCreditCardVoucher(BankDepositCreditCardVoucher model)
         {
             try
@@ -165,7 +167,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBankDepositCreditCardVoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
@@ -186,6 +187,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertBankDepositDebitCardVoucher(BankDepositDebitCardVoucher model)
         {
             try
@@ -194,7 +196,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBankDepositDebitCardVoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
@@ -215,6 +216,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertBankDepositDirectDepositVoucher(BankDepositDirectDepositVoucher model)
         {
             try
@@ -223,7 +225,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBankDepositDirectDepositVoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
@@ -240,6 +241,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertBankWithdrawalChequeCoucher(BankWithdrawalChequeVoucher model)
         {
             try
@@ -248,7 +250,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBankWithdrawalChequeCoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
@@ -266,6 +267,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertBankWithdrawalForPettyCash(BankWithdrawalChequeVoucher model)
         {
             try
@@ -274,7 +276,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertBankWithdrawalForPettyCash_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Notes);
@@ -291,6 +292,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateBankAccountInformation(Int32 AccountId, Int32 BankId, String AccountNo, String AccountName)
         {
             try
@@ -299,7 +301,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateBankAccountInformation_SP");
                     DataAccess.AddInParameter(command, "@AccountId", SqlDbType.Int, AccountId);
                     DataAccess.AddInParameter(command, "@BankId", SqlDbType.Int, BankId);
@@ -314,6 +315,5 @@ namespace Billing.DAL
                 return false;
             }
         }
-
     }
 }

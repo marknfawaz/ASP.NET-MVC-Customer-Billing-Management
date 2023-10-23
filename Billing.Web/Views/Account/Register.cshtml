@@ -49,13 +49,13 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.EnumDropDownListFor(m => m.Gender, "Gender", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.Gender,  Html.GetEnumSelectList(typeof(Billing.Entities.Sex)),"Gender", new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.UserRoles, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.EnumDropDownListFor(m => m.UserRoles, "Roles", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.UserRoles,Html.GetEnumSelectList(typeof(Billing.Entities.UserRole)), "Roles", new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">

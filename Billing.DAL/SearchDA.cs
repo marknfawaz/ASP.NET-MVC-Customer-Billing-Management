@@ -1,10 +1,10 @@
-﻿using Billing.ViewModel;
+using Billing.ViewModel;
 using Billing.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using Billing.DAL.Parameters;
+using Microsoft.Data.SqlClient;
 
 namespace Billing.DAL
 {
@@ -19,7 +19,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchInvoicesByInvoicesID_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, (int)InvoiceID);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -40,6 +39,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -49,6 +49,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchDraftByDraftID(int? InvoiceID)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -57,7 +58,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchDraftByDraftID_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, (int)InvoiceID);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -78,6 +78,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -87,6 +88,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchInvoicesByPaxLastNames(string nameString)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -95,7 +97,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchInvoicesByPaxLastNames_SP");
                     DataAccess.AddInParameter(command, "@LastName", SqlDbType.VarChar, nameString);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -116,6 +117,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -125,6 +127,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchDraftByPaxLastNames(string nameString)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -133,7 +136,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchDraftByPaxLastNames_SP");
                     DataAccess.AddInParameter(command, "@LastName", SqlDbType.VarChar, nameString);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -154,6 +156,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -163,6 +166,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchInvoicesByPNR(string PNR)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -171,7 +175,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchInvoicesByPNR_SP");
                     DataAccess.AddInParameter(command, "@Pnr", SqlDbType.VarChar, PNR);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -192,6 +195,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -201,6 +205,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchInvoicesByTicketNo(string TicketNo)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -209,7 +214,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchInvoicesByTicketNo_SP");
                     DataAccess.AddInParameter(command, "@TicketNo", SqlDbType.VarChar, TicketNo);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -230,6 +234,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -239,6 +244,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchInvoicesByDate(string SysDate)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -247,7 +253,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchInvoicesByDate_SP");
                     DataAccess.AddInParameter(command, "@SysDate", SqlDbType.VarChar, SysDate);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -268,6 +273,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -277,6 +283,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchDraftByDate(string SysDate)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -285,7 +292,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchDraftByDate_SP");
                     DataAccess.AddInParameter(command, "@SysDate", SqlDbType.VarChar, SysDate);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -306,6 +312,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -315,6 +322,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchInvoicesByDateRange(string FromDate, string ToDate)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -323,7 +331,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchInvoicesByDateRange_SP");
                     DataAccess.AddInParameter(command, "@FromDate", SqlDbType.VarChar, FromDate);
                     DataAccess.AddInParameter(command, "@ToDate", SqlDbType.VarChar, ToDate);
@@ -345,6 +352,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -354,6 +362,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchDraftByDateRange(string FromDate, string ToDate)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -362,7 +371,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchDraftByDateRange_SP");
                     DataAccess.AddInParameter(command, "@FromDate", SqlDbType.VarChar, FromDate);
                     DataAccess.AddInParameter(command, "@ToDate", SqlDbType.VarChar, ToDate);
@@ -384,6 +392,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -393,6 +402,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> GetLatestInvoiceList()
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -401,7 +411,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetLatestInvoiceList_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -421,6 +430,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -430,6 +440,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> GetDraftInvoiceList()
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -438,7 +449,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetDraftInvoiceList_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -458,6 +468,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -467,6 +478,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchInvoicesByDateRangeForHome(string FromDate, string ToDate, string UserId)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -475,7 +487,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchInvoicesByDateRangeAndUserId_SP");
                     DataAccess.AddInParameter(command, "@FromDate", SqlDbType.VarChar, FromDate);
                     DataAccess.AddInParameter(command, "@ToDate", SqlDbType.VarChar, ToDate);
@@ -498,6 +509,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -507,6 +519,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public List<InvoiceListViewModel> SearchDraftByDateRangeForHome(string FromDate, string ToDate, string UserId)
         {
             List<InvoiceListViewModel> invList = new List<InvoiceListViewModel>();
@@ -515,7 +528,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "SearchDraftByDateRangeAndUserId_SP");
                     DataAccess.AddInParameter(command, "@FromDate", SqlDbType.VarChar, FromDate);
                     DataAccess.AddInParameter(command, "@ToDate", SqlDbType.VarChar, ToDate);
@@ -538,6 +550,7 @@ namespace Billing.DAL
                             invList.Add(invoice);
                         }
                     }
+
                     reader.Close();
                     return invList;
                 }
@@ -547,6 +560,7 @@ namespace Billing.DAL
                 return invList;
             }
         }
+
         public bool InsertNewRemarksToInvoice(InvoiceLog model)
         {
             try
@@ -555,7 +569,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertNewRemarksToInvoice_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, (int)model.InvoiceId);
                     DataAccess.AddInParameter(command, "@ApplicationUserId", SqlDbType.VarChar, model.ApplicationUserId);
@@ -576,6 +589,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateInvoiceFareInfo(InvoiceName model, string UserID)
         {
             try
@@ -584,7 +598,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateInvoiceFareInfo_SP");
                     DataAccess.AddInParameter(command, "@TableId", SqlDbType.Int, model.Id);
                     DataAccess.AddInParameter(command, "@Name", SqlDbType.VarChar, model.Name);
@@ -606,6 +619,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateInvoiceSegments(SegmentUpdateParams model, string UserID)
         {
             try
@@ -614,7 +628,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateInvoiceSegments_SP");
                     DataAccess.AddInParameter(command, "@TableId", SqlDbType.Int, model.TableId);
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, model.InvoiceId);
@@ -638,6 +651,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool FinalizeFareInfoUpdate(FinalizeFareInfoUpdate model)
         {
             try
@@ -646,7 +660,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "FinalizeFareInfoUpdate_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, model.InvoiceId);
                     DataAccess.AddInParameter(command, "@ApplicationUserId", SqlDbType.VarChar, model.ApplicationUserId);
@@ -661,6 +674,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool FinalizeTicketSegmentUpdate(FinalizeFareInfoUpdate model)
         {
             try
@@ -669,7 +683,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "FinalizeInvoiceSegmentUpdate_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, model.InvoiceId);
                     DataAccess.AddInParameter(command, "@ApplicationUserId", SqlDbType.VarChar, model.ApplicationUserId);
@@ -683,6 +696,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InsertNewBankAccount(InsertNewBankAccount model)
         {
             try
@@ -691,7 +705,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertNewBankAccount_SP");
                     DataAccess.AddInParameter(command, "@BankNames", SqlDbType.Int, model.BankNames);
                     DataAccess.AddInParameter(command, "@AccountNo", SqlDbType.VarChar, model.AccountNo);
@@ -707,6 +720,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool InvoicePaymentCashVoucher(CashTransaction model)
         {
             try
@@ -715,7 +729,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertInvoicePaymentCashVoucher_SP");
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, model.Remarks);
@@ -730,6 +743,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool AddCreditCardPaymentDetails(CCardDetail Obj)
         {
             try
@@ -738,7 +752,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "AddCreditCardPaymentDetails_SP");
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, Obj.Notes);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, Obj.Amount);
@@ -765,6 +778,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool AddDebitCardPaymentDetails(DCardDetail Obj)
         {
             try
@@ -773,7 +787,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "AddDebitCardPaymentDetails_SP");
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, Obj.Notes);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, Obj.Amount);
@@ -800,6 +813,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool AddBankDepositPaymentDetails(BankPaymentDetail Obj)
         {
             try
@@ -808,7 +822,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "AddBankDepositPaymentDetails_SP");
                     DataAccess.AddInParameter(command, "@Notes", SqlDbType.VarChar, Obj.Notes);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, Obj.Amount);
@@ -832,6 +845,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateInvoicePaymentStatus(int InvoiceId, int PaymentStatus, string UserID)
         {
             try
@@ -853,6 +867,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateDraftToInvoice(int InvoiceId, int InvoiceStatus, string UserID)
         {
             try
@@ -874,6 +889,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateInvoicePaymentStatusVendor(int InvoiceId, int PaymentStatus, string UserID)
         {
             try
@@ -895,6 +911,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public List<InvoiceDetailsPaxViewModel> GetInvoicePaxInfo(int InvoiceId)
         {
             List<InvoiceDetailsPaxViewModel> paxList = new List<InvoiceDetailsPaxViewModel>();
@@ -903,7 +920,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetInvoicePaxInfoForInvoiceDetails_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceId);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -925,6 +941,7 @@ namespace Billing.DAL
                             paxList.Add(passenger);
                         }
                     }
+
                     reader.Close();
                     return paxList;
                 }
@@ -934,6 +951,7 @@ namespace Billing.DAL
                 return paxList;
             }
         }
+
         public List<InvoiceDetailsSegmentViewModel> GetInvoiceSegmentInfo(int InvoiceId)
         {
             List<InvoiceDetailsSegmentViewModel> segList = new List<InvoiceDetailsSegmentViewModel>();
@@ -942,7 +960,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetInvoiceSegmentInfoForInvoiceDetails_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceId);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -966,6 +983,7 @@ namespace Billing.DAL
                             segList.Add(segment);
                         }
                     }
+
                     reader.Close();
                     return segList;
                 }
@@ -975,6 +993,7 @@ namespace Billing.DAL
                 return segList;
             }
         }
+
         public List<InvoiceDetailsLogViewModel> GetInvoiceLogInfo(int InvoiceId)
         {
             List<InvoiceDetailsLogViewModel> logList = new List<InvoiceDetailsLogViewModel>();
@@ -983,7 +1002,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetInvoiceLogInfoForInvoiceDetails_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceId);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -999,6 +1017,7 @@ namespace Billing.DAL
                             logList.Add(log);
                         }
                     }
+
                     reader.Close();
                     return logList;
                 }
@@ -1008,6 +1027,7 @@ namespace Billing.DAL
                 return logList;
             }
         }
+
         public bool UpdateInvoiceCurrentUser(string userID, int InvoiceID)
         {
             try
@@ -1016,7 +1036,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateInvoiceExistingUser_SP");
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceID);
                     DataAccess.AddInParameter(command, "@UserID", SqlDbType.VarChar, userID);
@@ -1029,6 +1048,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public bool UpdateInvoiceTicketIssueDate(string IssueDate, int InvoiceID, int TableID)
         {
             try
@@ -1037,7 +1057,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "UpdateInvoiceTicketIssueDate_SP");
                     DataAccess.AddInParameter(command, "@TableId", SqlDbType.Int, TableID);
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceID);
@@ -1051,6 +1070,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public double GetInvoicePaidAmount(int InvoiceID)
         {
             double PaidAmount = 0;
@@ -1059,15 +1079,12 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetInvoicePaidAmountByAgentCustomer_SP");
                     DataAccess.AddInParameter(command, "@InvoiceID", SqlDbType.Int, InvoiceID);
                     var returnParameter = command.Parameters.Add("@PaidAmount", SqlDbType.Float);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
-
                     command.ExecuteNonQuery();
                     PaidAmount = Convert.ToDouble(returnParameter.Value);
-
                     return PaidAmount;
                 }
             }
@@ -1076,6 +1093,7 @@ namespace Billing.DAL
                 return PaidAmount;
             }
         }
+
         public double GetTicketAmountOfAgentCustomer(int TicketId)
         {
             double TicketAmount = 0;
@@ -1084,15 +1102,12 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetTicketAmountByAgentCustomer_SP");
                     DataAccess.AddInParameter(command, "@TicketId", SqlDbType.Int, TicketId);
                     var returnParameter = command.Parameters.Add("@TicketAmount", SqlDbType.Float);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
-
                     command.ExecuteNonQuery();
                     TicketAmount = Convert.ToDouble(returnParameter.Value);
-
                     return TicketAmount;
                 }
             }
@@ -1101,6 +1116,7 @@ namespace Billing.DAL
                 return TicketAmount;
             }
         }
+
         public bool DeleteTicketFromInvoice(int TicketId, int InvoiceID, string UserID)
         {
             try
@@ -1109,11 +1125,10 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "DeleteTicketFromInvoice_SP");
                     DataAccess.AddInParameter(command, "@TicketId", SqlDbType.Int, TicketId);
                     DataAccess.AddInParameter(command, "@InvoiceId", SqlDbType.Int, InvoiceID);
-                    DataAccess.AddInParameter(command, "@UserID", SqlDbType.VarChar, UserID); 
+                    DataAccess.AddInParameter(command, "@UserID", SqlDbType.VarChar, UserID);
                     status = DataAccess.ExecuteNonQuery(command);
                     return status < 0 ? false : true;
                 }
@@ -1123,6 +1138,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public int GetInvoiceAgentCustomerPaymentStatus(int InvoiceId)
         {
             int PaymentStaus = 0;
@@ -1131,15 +1147,12 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetInvoiceAgentCustomerPaymentStatus_SP");
                     DataAccess.AddInParameter(command, "@InvoiceID", SqlDbType.Int, InvoiceId);
                     var returnParameter = command.Parameters.Add("@PaymentStaus", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
-
                     command.ExecuteNonQuery();
                     PaymentStaus = Convert.ToInt32(returnParameter.Value);
-
                     return PaymentStaus;
                 }
             }
@@ -1148,6 +1161,5 @@ namespace Billing.DAL
                 return PaymentStaus;
             }
         }
-
     }
 }

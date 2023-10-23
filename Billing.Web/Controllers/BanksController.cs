@@ -1,31 +1,38 @@
-﻿using Billing.DAL;
-using Billing.Entities;
-using Billing.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using System.Net;
-using Vereyon.Web;
-using Billing.DAL.Parameters;
-using Billing.DAL.Helpers;
-
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using Billing.DAL;
+    using Billing.DAL.Helpers;
+    using Billing.DAL.Parameters;
+    using Billing.Entities;
+    using Billing.ViewModel;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http.HttpResults;
+    using Microsoft.AspNetCore.Mvc;
+    using Vereyon.Web;
+
+    //[Authorize]
     public class BanksController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        public BanksController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
         public ActionResult Index()
         {
             List<BankAccount> accounts = new BankDA().GetBankAccountList();
             return View(accounts);
         }
+
         public ActionResult AddBank()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddBank(AddBankViewModel model)
@@ -34,6 +41,7 @@ namespace Billing.Web.Controllers
             {
                 return View(model);
             }
+
             try
             {
                 InsertNewBankAccount Obj = new InsertNewBankAccount();
@@ -41,22 +49,24 @@ namespace Billing.Web.Controllers
                 Obj.AccountNames = model.AccountNames;
                 Obj.AccountNo = model.AccountNo;
                 Obj.Balance = model.Balance;
-                Obj.UserId = User.Identity.GetUserId();
+                Obj.UserId = User.Identity.Name;
                 new SearchDA().InsertNewBankAccount(Obj);
             }
             catch (Exception)
             {
-
                 throw;
             }
+
             return RedirectToAction("Index", "Banks");
         }
+
         public ActionResult BankLedger(int? id, string BankName)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             List<BankAccountLedger> baLedger = new List<BankAccountLedger>();
             string locBankName = string.Empty;
             string locAccountName = string.Empty;
@@ -70,15 +80,18 @@ namespace Billing.Web.Controllers
             catch (Exception)
             {
             }
+
             ViewBag.AcName = locAccountName;
             ViewBag.BankName = locBankName;
             return View(baLedger);
         }
+
         public ActionResult LedgerHead()
         {
             List<BankAccountLedgerHead> baLHeadLst = new BankDA().GetBankLedgerHeadList();
             return View(baLHeadLst);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LedgerHead(BankAccountLedgerHead model)
@@ -87,9 +100,10 @@ namespace Billing.Web.Controllers
             {
                 return View(model);
             }
-            if(model == null)
+
+            if (model == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
             else
             {
@@ -97,27 +111,29 @@ namespace Billing.Web.Controllers
                 obj.LedgerHead = model.LedgerHead;
                 obj.LedgerTypes = model.LedgerTypes;
                 new BankDA().InsertNewBankLedgerHead(obj);
-                
                 return RedirectToAction("LedgerHead", "Banks");
             }
         }
+
         public ActionResult BankDeposit()
         {
             BankDepositViewModel model = new BankDepositViewModel();
             model.BankAccountLedgerHeads = db.BankAccountLedgerHeads.Where(a => a.Editable == true && a.Status == true && a.LedgerTypes == LedgerType.Credit).ToList();
             return View(model);
         }
+
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public ActionResult BankDeposit(BankDepositViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("BankDeposit", "Banks");
             }
+
             if (model == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
             else
             {
@@ -125,7 +141,7 @@ namespace Billing.Web.Controllers
                 {
                     bool status = false;
                     int TransactionMethod = (int)model.TransactionMethod;
-                    #region Bank Deposit - Payment Method * Cash
+#region Bank Deposit - Payment Method * Cash
                     if (TransactionMethod == 1)
                     {
                         BankDepositCashVoucher Obj = new BankDepositCashVoucher();
@@ -133,12 +149,12 @@ namespace Billing.Web.Controllers
                         Obj.BankAccountId = model.BankAccountId;
                         Obj.BankLedgerHeadId = model.BankAccountLedgerHeadId;
                         Obj.Notes = model.Notes;
-                        Obj.UserID = User.Identity.GetUserId();
+                        Obj.UserID = User.Identity.Name;
                         Obj.LedgerDate = model.LedgerDate;
                         status = new BankDA().InsertBankDepositCashVoucher(Obj);
                     }
-                    #endregion
-                    #region Bank Deposit - Payment Method * Cheque
+#endregion
+#region Bank Deposit - Payment Method * Cheque
                     else if (TransactionMethod == 2)
                     {
                         BankDepositChequeVoucher Obj = new BankDepositChequeVoucher();
@@ -149,13 +165,13 @@ namespace Billing.Web.Controllers
                         Obj.AccountNo = model.AccountNo;
                         Obj.SortCode = model.SortCode;
                         Obj.Notes = model.Notes;
-                        Obj.UserID = User.Identity.GetUserId();
+                        Obj.UserID = User.Identity.Name;
                         Obj.LedgerDate = model.LedgerDate;
                         Obj.ChequeStauts = (int)ChequeStatus.Floating;
                         status = new BankDA().InsertBankDepositChequeVoucher(Obj);
                     }
-                    #endregion
-                    #region Bank Deposit - Payment Method * Credit Card
+#endregion
+#region Bank Deposit - Payment Method * Credit Card
                     else if (TransactionMethod == 3)
                     {
                         BankDepositCreditCardVoucher Obj = new BankDepositCreditCardVoucher();
@@ -168,11 +184,11 @@ namespace Billing.Web.Controllers
                         Obj.LedgerDate = model.LedgerDate;
                         Obj.LedgerHeadId = model.BankAccountLedgerHeadId;
                         Obj.Notes = model.Notes;
-                        Obj.UserID = User.Identity.GetUserId();
+                        Obj.UserID = User.Identity.Name;
                         status = new BankDA().InsertBankDepositCreditCardVoucher(Obj);
                     }
-                    #endregion
-                    #region Bank Deposit - Payment Method * Debit Card
+#endregion
+#region Bank Deposit - Payment Method * Debit Card
                     else if (TransactionMethod == 4)
                     {
                         BankDepositDebitCardVoucher Obj = new BankDepositDebitCardVoucher();
@@ -185,11 +201,11 @@ namespace Billing.Web.Controllers
                         Obj.LedgerDate = model.LedgerDate;
                         Obj.LedgerHeadId = model.BankAccountLedgerHeadId;
                         Obj.Notes = model.Notes;
-                        Obj.UserID = User.Identity.GetUserId();
+                        Obj.UserID = User.Identity.Name;
                         status = new BankDA().InsertBankDepositDebitCardVoucher(Obj);
                     }
-                    #endregion
-                    #region Bank Deposit - Payment Method * Direct Deposit
+#endregion
+#region Bank Deposit - Payment Method * Direct Deposit
                     else if (TransactionMethod == 5)
                     {
                         BankDepositDirectDepositVoucher Obj = new BankDepositDirectDepositVoucher();
@@ -197,25 +213,33 @@ namespace Billing.Web.Controllers
                         Obj.BankAccountId = model.BankAccountId;
                         Obj.BankLedgerHeadId = model.BankAccountLedgerHeadId;
                         Obj.Notes = model.Notes;
-                        Obj.UserID = User.Identity.GetUserId();
+                        Obj.UserID = User.Identity.Name;
                         Obj.LedgerDate = model.LedgerDate;
                         status = new BankDA().InsertBankDepositDirectDepositVoucher(Obj);
                     }
-                    #endregion
-                    return RedirectToAction("BankLedger", "Banks", new { @id = model.BankAccountId, @BankName = model.BankNames });
+
+#endregion
+                    return RedirectToAction("BankLedger", "Banks", new
+                    {
+                    @id = model.BankAccountId, @BankName = model.BankNames
+                    }
+
+                    );
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return RedirectToAction("BankDeposit", "Banks");
                 }
             }
         }
+
         public ActionResult BankWithdrawal()
         {
             BankWithdrawalViewModel model = new BankWithdrawalViewModel();
             model.BankAccountLedgerHeads = db.BankAccountLedgerHeads.Where(a => a.Editable == true && a.Status == true && a.LedgerTypes == LedgerType.Debit).ToList();
             return View(model);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BankWithdrawal(BankWithdrawalViewModel model)
@@ -225,9 +249,10 @@ namespace Billing.Web.Controllers
             {
                 return RedirectToAction("BankWithdrawal", "Banks");
             }
+
             if (model == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
             else
             {
@@ -235,21 +260,24 @@ namespace Billing.Web.Controllers
                 Obj.Amount = model.Amount;
                 Obj.Notes = model.Notes;
                 Obj.BankAccountId = model.BankAccountId;
-                Obj.UserID = User.Identity.GetUserId();
+                Obj.UserID = User.Identity.Name;
                 Obj.BankAccountId = model.BankAccountId;
                 Obj.BankLedgerHeadId = model.BankAccountLedgerHeadId;
                 Obj.BankId = (int)model.BankNames;
                 Obj.LedgerDate = model.LedgerDate;
                 status = new BankDA().InsertBankWithdrawalChequeCoucher(Obj);
             }
+
             return RedirectToAction("BankWithdrawal", "Banks");
         }
+
         public ActionResult PettyCashWithdrawal()
         {
             BankWithdrawalViewModel model = new BankWithdrawalViewModel();
             model.BankAccountLedgerHeads = db.BankAccountLedgerHeads.Where(a => a.Editable == true && a.Status == true && a.LedgerTypes == LedgerType.Debit).ToList();
             return View(model);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult PettyCashWithdrawal(BankWithdrawalViewModel model)
@@ -259,9 +287,10 @@ namespace Billing.Web.Controllers
             {
                 return RedirectToAction("PettyCashWithdrawal", "Banks");
             }
+
             if (model == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
             else
             {
@@ -269,15 +298,17 @@ namespace Billing.Web.Controllers
                 Obj.Amount = model.Amount;
                 Obj.Notes = model.Notes;
                 Obj.BankAccountId = model.BankAccountId;
-                Obj.UserID = User.Identity.GetUserId();
+                Obj.UserID = User.Identity.Name;
                 Obj.BankAccountId = model.BankAccountId;
                 Obj.BankLedgerHeadId = model.BankAccountLedgerHeadId;
                 Obj.BankId = (int)model.BankNames;
                 Obj.LedgerDate = model.LedgerDate;
                 status = new BankDA().InsertBankWithdrawalForPettyCash(Obj);
             }
+
             return RedirectToAction("PettyCashWithdrawal", "Banks");
         }
+
         public PartialViewResult GetBankAccounts(int BankId)
         {
             try
@@ -294,6 +325,7 @@ namespace Billing.Web.Controllers
                 return null;
             }
         }
+
         [HttpGet]
         public JsonResult GetBankBalance(int AccountId)
         {
@@ -304,47 +336,45 @@ namespace Billing.Web.Controllers
                 {
                     return Json(new
                     {
-                        Flag = false,
-                        AcNo = "Not Found",
-                        AcName = "Not Found",
-                        Balance = 0,
-                    }, JsonRequestBehavior.AllowGet);
+                    Flag = false, AcNo = "Not Found", AcName = "Not Found", Balance = 0, }
+
+                    );
                 }
                 else
                 {
                     return Json(new
                     {
-                        Flag = true,
-                        AcNo = Obj.AccountNo,
-                        AcName = Obj.AccountNames,
-                        Balance = Obj.Balance.ToString("f2"),
-                    }, JsonRequestBehavior.AllowGet);
+                    Flag = true, AcNo = Obj.AccountNo, AcName = Obj.AccountNames, Balance = Obj.Balance.ToString("f2"), }
+
+                    );
                 }
             }
             catch (Exception ex)
             {
                 return Json(new
                 {
-                    Flag = false,
-                    AcNo = "Not Found",
-                    AcName = "Not Found",
-                    Balance = 0,
-                }, JsonRequestBehavior.AllowGet);
+                Flag = false, AcNo = "Not Found", AcName = "Not Found", Balance = 0, }
+
+                );
             }
         }
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             BankAccount bacc = db.BankAccounts.Find(id);
             if (bacc == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(bacc);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(BankAccount bacc)
@@ -356,9 +386,18 @@ namespace Billing.Web.Controllers
                 String AccountNo = bacc.AccountNo;
                 String AccountName = bacc.AccountNames;
                 bool status = new BankDA().UpdateBankAccountInformation(AccountId, BankId, AccountNo, AccountName);
-                if (status) { FlashMessage.Confirmation("Bank Account Information Updated"); } else { FlashMessage.Danger("Some error occured!!"); }
+                if (status)
+                {
+                    //FlashMessage.Confirmation("Bank Account Information Updated");
+                }
+                else
+                {
+                    //FlashMessage.Danger("Some error occured!!");
+                }
+
                 return RedirectToAction("Index");
             }
+
             return View(bacc);
         }
     }

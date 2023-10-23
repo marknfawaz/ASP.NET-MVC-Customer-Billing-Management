@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Cheque Realize";
 }
-@using (Html.BeginForm("ChequeRealize", "Agent", null, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "AgentBulkPayment" }))
+@using (Html.BeginForm("ChequeRealize", "Agent", null, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", @id = "AgentBulkPayment" }))
 {
     <div class="row">
         <div class="col-md-12">
@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Deposit To</label>
                         <div class="col-md-10">
-                            @Html.DropDownList("BankId", EnumHelper.GetSelectList(typeof(Billing.ViewModel.BankName)), "Deposit To", new { @class = "form-control BankId", onchange = "return getBankAccountsBP(this.value);" })
+                            @Html.DropDownList("BankId", Html.GetEnumSelectList(typeof(Billing.Entities.BankName)), "Deposit To", new { @class = "form-control BankId", onchange = "return getBankAccountsBP(this.value);" })
                         </div>
                     </div>
                     <div class="BankAccountListBP">

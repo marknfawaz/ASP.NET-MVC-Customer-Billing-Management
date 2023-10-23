@@ -82,7 +82,7 @@
                 <h4 class="modal-title">Change Agent</h4>
             </div>
             <div class="modal-body" id="modal-body">
-                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="form-group" id="AgentList">
                         <label class="control-label col-md-2">Agent</label>
@@ -111,7 +111,7 @@
                 <h4 class="modal-title">Change Vendor</h4>
             </div>
             <div class="modal-body" id="modal-body">
-                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="form-group" id="VendorList">
                         <label class="control-label col-md-2">Vendor</label>
@@ -140,7 +140,7 @@
                 <h4 class="modal-title">Change Invoice Info</h4>
             </div>
             <div class="modal-body" id="modal-body">
-                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="form-group">
                         <label class="control-label col-md-2">VENDOR INVOICE</label>
@@ -221,7 +221,7 @@
                 <h4 class="modal-title">Change Agent</h4>
             </div>
             <div class="modal-body" id="modal-body">
-                @using (Html.BeginForm("InvoiceTransaction", "Invoice", null, FormMethod.Post, new { @class = "", role = "form" }))
+                @using (Html.BeginForm("InvoiceTransaction", "Invoice", null, FormMethod.Post, null, new { @class = "", role = "form" }))
                 {
                     <div class="row">
                         <div class="col-md-12">
@@ -307,7 +307,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 no-pad-top">Method</label>
                                         <div class="col-md-8">
-                                            @Html.DropDownList("TransactionMethod", EnumHelper.GetSelectList(typeof(Billing.ViewModel.PaymentMethod)), "Payment Method", new { @class = "form-control", id = "TransactionMethod", required = "required" })
+                                            @Html.DropDownList("TransactionMethod", Html.GetEnumSelectList(typeof(Billing.Entities.PaymentMethod)), "Payment Method", new { @class = "form-control", id = "TransactionMethod", required = "required" })
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +325,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 no-pad-top">Bank</label>
                                         <div class="col-md-8">
-                                            @Html.DropDownList("BankId", EnumHelper.GetSelectList(typeof(Billing.ViewModel.BankName)), "Select Bank", new { @class = "form-control" })
+                                            @Html.DropDownList("BankId", Html.GetEnumSelectList(typeof(Billing.Entities.BankName)), "Select Bank", new { @class = "form-control" })
                                         </div>
                                     </div>
                                 </div>
@@ -361,7 +361,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 no-pad-top">Bank Account</label>
                                         <div class="col-md-8">
-                                            @Html.DropDownList("BankNames", EnumHelper.GetSelectList(typeof(Billing.ViewModel.BankName)), "Deposit In", new { @class = "form-control", id = "BankNames", onchange = "return getBankAccounts()" })
+                                            @Html.DropDownList("BankNames", Html.GetEnumSelectList(typeof(Billing.Entities.BankName)), "Deposit In", new { @class = "form-control", id = "BankNames", onchange = "return getBankAccounts()" })
                                         </div>
                                     </div>
                                 </div>
@@ -408,7 +408,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 no-pad-top">Bank Account</label>
                                         <div class="col-md-8">
-                                            @Html.DropDownList("BankNames", EnumHelper.GetSelectList(typeof(Billing.ViewModel.BankName)), "Deposit In", new { @class = "form-control", id = "BankNamesDebitCard", onchange = "return getBankAccountsDebitCard()" })
+                                            @Html.DropDownList("BankNames", Html.GetEnumSelectList(typeof(Billing.Entities.BankName)), "Deposit In", new { @class = "form-control", id = "BankNamesDebitCard", onchange = "return getBankAccountsDebitCard()" })
                                         </div>
                                     </div>
                                 </div>
@@ -455,7 +455,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4 no-pad-top">Bank Account</label>
                                         <div class="col-md-8">
-                                            @Html.DropDownList("BankNames", EnumHelper.GetSelectList(typeof(Billing.ViewModel.BankName)), "Deposit In", new { @class = "form-control", id = "BankNamesBankDeposit", onchange = "return getBankAccountsBankDeposit()" })
+                                            @Html.DropDownList("BankNames", Html.GetEnumSelectList(typeof(Billing.Entities.BankName)), "Deposit In", new { @class = "form-control", id = "BankNamesBankDeposit", onchange = "return getBankAccountsBankDeposit()" })
                                         </div>
                                     </div>
                                 </div>
@@ -517,7 +517,7 @@
                 <h4 class="modal-title">Add Remarks</h4>
             </div>
             <div class="modal-body" id="modal-body">
-                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="form-group" id="AgentList">
                         <label class="control-label col-md-2">Remarks</label>
@@ -544,7 +544,7 @@
                 <h4 class="modal-title">Change User</h4>
             </div>
             <div class="modal-body" id="modal-body">
-                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("UpdateInvoice", "Invoice", null, FormMethod.Post, null, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="form-group">
                         <label class="control-label col-md-2">Current User</label>

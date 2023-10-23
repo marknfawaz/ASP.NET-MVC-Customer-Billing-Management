@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InvoiceType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.InvoiceType, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.InvoiceType, Html.GetEnumSelectList(typeof(Billing.Entities.ProfileType)), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.InvoiceType, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,7 +99,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GDSs, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.GDSs, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.GDSs, Html.GetEnumSelectList(typeof(Billing.Entities.GDS)),htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.GDSs, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -163,7 +163,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InvoiceStatusS, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.InvoiceStatusS, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.InvoiceStatusS,Html.GetEnumSelectList(typeof(Billing.Entities.ProfileType)), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.InvoiceStatusS, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2" for="GeneralLedgerType">Type</label>
                             <div class="col-md-10">
-                                @Html.DropDownList("GeneralLedgerType", EnumHelper.GetSelectList(typeof(Billing.ViewModel.LedgerType)), "Type", new { @class = "form-control" })
+                                @Html.DropDownList("GeneralLedgerType", Html.GetEnumSelectList(typeof(Billing.Entities.LedgerType)), "Type", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.GeneralLedgerHeadName, "", new { @class = "text-danger" })
                             </div>
                         </div>

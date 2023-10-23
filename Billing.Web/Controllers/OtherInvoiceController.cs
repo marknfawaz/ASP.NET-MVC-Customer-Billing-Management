@@ -1,25 +1,28 @@
-﻿
-using Billing.DAL;
-using Billing.DAL.Helpers;
-using Billing.DAL.Parameters;
-using Billing.Entities;
-using Billing.ViewModel;
-using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Script.Serialization;
-
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using Billing.DAL;
+    using Billing.DAL.Helpers;
+    using Billing.DAL.Parameters;
+    using Billing.Entities;
+    using Billing.ViewModel;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
+    //[Authorize]
     public class OtherInvoiceController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        public OtherInvoiceController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
+
         public ActionResult Index()
         {
             List<OtherInvoiceList> vModel = new OtherInvoiceDA().GetLatestOtherInvoiceList();
@@ -28,6 +31,7 @@ namespace Billing.Web.Controllers
             ViewBag.InvoiceType = new SelectList(db.OtherInvoiceTypes.OrderBy(a => a.InvoiceType), "Id", "InvoiceType");
             return View(vModel);
         }
+
         public PartialViewResult GetFilteredOtherInvoiceList(string FromDate, string ToDate, int? AgentId, string UsersId, int? TypesId)
         {
             DateTime StartDate;
@@ -36,31 +40,38 @@ namespace Billing.Web.Controllers
             {
                 FromDate = DateTime.Now.ToString("MM/dd/yyyy");
             }
+
             if (!DateTime.TryParseExact(ToDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out FinisDate))
             {
                 ToDate = DateTime.Now.ToString("MM/dd/yyyy");
             }
+
             List<OtherInvoiceList> vModel = new OtherInvoiceDA().GetFilteredOtherInvoiceList(StartDate, FinisDate, AgentId, UsersId, TypesId);
             return PartialView("OtherInvoice/OtherInvoiceList", vModel);
         }
+
         public ActionResult InvoiceTypes()
         {
             List<OtherInvocieTypeList> lstObj = new OtherInvoiceDA().GetOtheInvoiceTypeList();
             return View(lstObj);
         }
+
         public ActionResult EditType(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             OtherInvoiceType invType = new OtherInvoiceDA().GetOtherInvoiceByTypeId((int)id);
             if (invType == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(invType);
         }
+
         [HttpPost]
         public ActionResult EditType(OtherInvoiceType model)
         {
@@ -68,28 +79,33 @@ namespace Billing.Web.Controllers
             {
                 return RedirectToAction("InvoiceTypes", "OtherInvoice");
             }
+
             bool status = new OtherInvoiceDA().UpdateOtherInvoiceType(model);
             return RedirectToAction("InvoiceTypes", "OtherInvoice");
         }
+
         public ActionResult CreateType(string InvoiceType)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("InvoiceTypes", "OtherInvoice");
             }
+
             OtherInvoiceType model = new OtherInvoiceType();
             model.CreatedOn = DateTime.Now;
             model.InvoiceType = InvoiceType;
-            model.ApplicationUserId = User.Identity.GetUserId();
+            model.ApplicationUserId = User.Identity.Name;
             bool status = new OtherInvoiceDA().InsertOtherInvoiceType(model);
             return RedirectToAction("InvoiceTypes", "OtherInvoice");
         }
+
         public ActionResult CreateInvoice()
         {
             ViewBag.InvoiceType = new SelectList(db.OtherInvoiceTypes.OrderBy(a => a.InvoiceType), "Id", "InvoiceType");
             ViewBag.VendorList = new SelectList(db.Vendors.OrderBy(a => a.Name).ToList(), "Id", "Name");
             return View();
         }
+
         [HttpPost]
         public ActionResult CreateInvoice(CreateOtherInvoice model)
         {
@@ -97,9 +113,10 @@ namespace Billing.Web.Controllers
             {
                 return RedirectToAction("CreateInvoice", "OtherInvoice");
             }
+
             OtherInvoice Obj = new OtherInvoice();
             Obj.AgentId = model.AgentId;
-            Obj.ApplicationUserId = User.Identity.GetUserId();
+            Obj.ApplicationUserId = User.Identity.Name;
             Obj.CreatedOn = DateTime.Now;
             Obj.CustomerAgentAmount = model.CustomerAgentAmount;
             Obj.CustomerAgentPaid = false;
@@ -115,59 +132,78 @@ namespace Billing.Web.Controllers
             bool ret = new OtherInvoiceDA().InsertNewOtherInvoice(Obj);
             return RedirectToAction("CreateInvoice", "OtherInvoice");
         }
+
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             OtherInvoiceDetailsViewModel vmModel = new OtherInvoiceDA().GetOtherInvoiceDetailsByInvoiceId((int)id);
             if (vmModel == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             vmModel.InvLogs = new OtherInvoiceDA().GetOtherInvoiceLogInfo((int)id);
             vmModel.InvPayments = new OtherInvoiceDA().GetOtherInvoicePaymentList((int)id);
             return View(vmModel);
         }
+
         public ActionResult UpdateOtherInvoice(FormCollection col)
         {
             int InvoiceId = (string.IsNullOrEmpty(col["InvoiceId"])) ? 0 : Convert.ToInt32(col["InvoiceId"]);
             try
             {
-                #region Add new Remarks to invoice
+#region Add new Remarks to invoice
                 if (col["trigger"].ToString() == "addRemarks")
                 {
                     OtherInvoiceLog ilObj = new OtherInvoiceLog();
-                    ilObj.ApplicationUserId = User.Identity.GetUserId();
+                    ilObj.ApplicationUserId = User.Identity.Name;
                     ilObj.OtherInvoiceId = InvoiceId;
                     ilObj.Remarks = (string.IsNullOrEmpty(col["InvoiceRemakrs"])) ? string.Empty : col["InvoiceRemakrs"];
                     new OtherInvoiceDA().InsertNewRemarksToOtherInvoice(ilObj);
-                    return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                    return RedirectToAction("Details", "OtherInvoice", new
+                    {
+                    id = InvoiceId
+                    }
+
+                    );
                 }
-                #endregion
-                #region Update the agent of an invoice
+#endregion
+#region Update the agent of an invoice
                 else if (col["trigger"].ToString() == "ChangeAgent")
                 {
                     int AgentId = (string.IsNullOrEmpty(col["AgentId"])) ? 0 : Convert.ToInt32(col["AgentId"]);
-                    string userID = User.Identity.GetUserId();
+                    string userID = User.Identity.Name;
                     new OtherInvoiceDA().UpdateOtherInvoiceAgent(userID, InvoiceId, AgentId);
-                    return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                    return RedirectToAction("Details", "OtherInvoice", new
+                    {
+                    id = InvoiceId
+                    }
+
+                    );
                 }
-                #endregion
-                #region Update the vendor of an invoice
+#endregion
+#region Update the vendor of an invoice
                 else if (col["trigger"].ToString() == "ChangeVendor")
                 {
                     int VendorId = (string.IsNullOrEmpty(col["VendorId"])) ? 0 : Convert.ToInt32(col["VendorId"]);
-                    string userID = User.Identity.GetUserId();
+                    string userID = User.Identity.Name;
                     new OtherInvoiceDA().UpdateOtherInvoiceVendor(userID, InvoiceId, VendorId);
-                    return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                    return RedirectToAction("Details", "OtherInvoice", new
+                    {
+                    id = InvoiceId
+                    }
+
+                    );
                 }
-                #endregion
-                #region Update invoice basic information
+#endregion
+#region Update invoice basic information
                 else if (col["trigger"].ToString() == "ChangeInvoiceInfo")
                 {
-                    string UserID = User.Identity.GetUserId();
+                    string UserID = User.Identity.Name;
                     int OtherInvoiceTypeId = (string.IsNullOrEmpty(col["OtherInvoiceTypeId"])) ? 0 : Convert.ToInt32(col["OtherInvoiceTypeId"]);
                     string ExpectedPayDate = (string.IsNullOrEmpty(col["ExpectedPayDate"])) ? string.Empty : Convert.ToString(col["ExpectedPayDate"]);
                     string Reference = (string.IsNullOrEmpty(col["Reference"])) ? string.Empty : Convert.ToString(col["Reference"]);
@@ -175,83 +211,122 @@ namespace Billing.Web.Controllers
                     string Details = (string.IsNullOrEmpty(col["Details"])) ? string.Empty : Convert.ToString(col["Details"]);
                     double Amount = (string.IsNullOrEmpty(col["Amount"])) ? 0 : Convert.ToDouble(col["Amount"]);
                     double PaidAmount = (string.IsNullOrEmpty(col["PaidAmount"])) ? 0 : Convert.ToDouble(col["PaidAmount"]);
-                    if(PaidAmount > Amount)
+                    if (PaidAmount > Amount)
                     {
-                        return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                        return RedirectToAction("Details", "OtherInvoice", new
+                        {
+                        id = InvoiceId
+                        }
+
+                        );
                     }
                     else
                     {
                         new OtherInvoiceDA().UpdateOtherInvoiceBasicInfo(UserID, InvoiceId, OtherInvoiceTypeId, ExpectedPayDate, Reference, VendorInvNo, Details, Amount);
-                        return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                        return RedirectToAction("Details", "OtherInvoice", new
+                        {
+                        id = InvoiceId
+                        }
+
+                        );
                     }
                 }
-                #endregion
-                #region Change User of the Invoice
+#endregion
+#region Change User of the Invoice
                 else if (col["trigger"].ToString() == "ChangeUser")
                 {
                     string NewUserID = (string.IsNullOrEmpty(col["ApplicationUserId"])) ? string.Empty : col["ApplicationUserId"];
                     new OtherInvoiceDA().UpdateOtherInvoiceCurrentUser(NewUserID, InvoiceId);
-                    return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                    return RedirectToAction("Details", "OtherInvoice", new
+                    {
+                    id = InvoiceId
+                    }
+
+                    );
                 }
-                #endregion
-                #region When nothing found
+#endregion
+#region When nothing found
                 else
                 {
-                    return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
-                } 
-                #endregion
+                    return RedirectToAction("Details", "OtherInvoice", new
+                    {
+                    id = InvoiceId
+                    }
+
+                    );
+                }
+#endregion
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                return RedirectToAction("Details", "OtherInvoice", new
+                {
+                id = InvoiceId
+                }
+
+                );
             }
         }
+
         public ActionResult AgentPaid(int? id)
         {
             bool status = false;
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
-            status = new OtherInvoiceDA().UpdateOtherInvoicePaymentStatus((int)id, (int)InvoicePaymentStatus.Paid, User.Identity.GetUserId());
-            return RedirectToAction("Details", "OtherInvoice", new { id = id });
+
+            status = new OtherInvoiceDA().UpdateOtherInvoicePaymentStatus((int)id, (int)InvoicePaymentStatus.Paid, User.Identity.Name);
+            return RedirectToAction("Details", "OtherInvoice", new
+            {
+            id = id
+            }
+
+            );
         }
+
         public ActionResult VendorPaid(int? id)
         {
             bool status = false;
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
-            status = new OtherInvoiceDA().UpdateOtherInvoicePaymentStatusVendor((int)id, (int)InvoicePaymentStatus.Paid, User.Identity.GetUserId());
-            return RedirectToAction("Details", "OtherInvoice", new { id = id });
+
+            status = new OtherInvoiceDA().UpdateOtherInvoicePaymentStatusVendor((int)id, (int)InvoicePaymentStatus.Paid, User.Identity.Name);
+            return RedirectToAction("Details", "OtherInvoice", new
+            {
+            id = id
+            }
+
+            );
         }
+
         public ActionResult GetOtherInvoiceTypeList()
         {
             List<OtherInvoiceType> lstType = new List<OtherInvoiceType>();
             lstType = (db.OtherInvoiceTypes.OrderBy(x => x.InvoiceType).ToList<OtherInvoiceType>());
-            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-            string result = javaScriptSerializer.Serialize(lstType);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(lstType);
         }
+
         public ActionResult AgtCustTransaction(FormCollection form)
         {
             int InvoiceId = (string.IsNullOrEmpty(form["InvoiceId"])) ? 0 : Convert.ToInt32(form["InvoiceId"]);
             try
             {
                 int TransactionMethod = (string.IsNullOrEmpty(form["TransactionMethod"])) ? 0 : Convert.ToInt32(form["TransactionMethod"]);
-                #region Payment by Cash
+#region Payment by Cash
                 if (TransactionMethod == 1)
                 {
                     CashTransaction Obj = new CashTransaction();
                     Obj.Amount = (string.IsNullOrEmpty(form["PaymentAmount"])) ? 0 : Convert.ToDouble(form["PaymentAmount"]);
                     Obj.Remarks = (string.IsNullOrEmpty(form["PaymentRemarks"])) ? string.Empty : Convert.ToString(form["PaymentRemarks"]);
-                    Obj.UserId = User.Identity.GetUserId();
+                    Obj.UserId = User.Identity.Name;
                     Obj.InvoiceId = InvoiceId;
                     new OtherInvoiceDA().OtherInvoicePaymentCashVoucher(Obj);
                 }
-                #endregion
-                #region Payment by Bank Cheque
+#endregion
+#region Payment by Bank Cheque
                 else if (TransactionMethod == 2)
                 {
                     ChequeDetails Obj = new ChequeDetails();
@@ -264,8 +339,8 @@ namespace Billing.Web.Controllers
                     Obj.SortCode = (string.IsNullOrEmpty(form["SortCode"])) ? string.Empty : Convert.ToString(form["SortCode"]);
                     this.chequeTransaction(Obj);
                 }
-                #endregion
-                #region Payment By Credit Card
+#endregion
+#region Payment By Credit Card
                 else if (TransactionMethod == 3)
                 {
                     CCardDetail Obj = new CCardDetail();
@@ -277,11 +352,11 @@ namespace Billing.Web.Controllers
                     Obj.ExtraAmount = (string.IsNullOrEmpty(form["ExtraAmount"])) ? string.Empty : Convert.ToString(form["ExtraAmount"]);
                     Obj.InvoiceId = InvoiceId;
                     Obj.Notes = String.Format("Credit Card Invoice Payment by {0}. - {1}", User.Identity.GetDisplayName(), (string.IsNullOrEmpty(form["PaymentRemarks"])) ? string.Empty : Convert.ToString(form["PaymentRemarks"]));
-                    Obj.UserId = User.Identity.GetUserId();
+                    Obj.UserId = User.Identity.Name;
                     new OtherInvoiceDA().AddCreditCardPaymentDetailsOtherInvoice(Obj);
                 }
-                #endregion
-                #region Payment by Debit Card
+#endregion
+#region Payment by Debit Card
                 else if (TransactionMethod == 4)
                 {
                     DCardDetail Obj = new DCardDetail();
@@ -293,11 +368,11 @@ namespace Billing.Web.Controllers
                     Obj.ExtraAmount = (string.IsNullOrEmpty(form["ExtraAmountDebitCard"])) ? string.Empty : Convert.ToString(form["ExtraAmountDebitCard"]);
                     Obj.InvoiceId = InvoiceId;
                     Obj.Notes = String.Format("Debit Card Invoice Payment by {0}. - {1}", User.Identity.GetDisplayName(), (string.IsNullOrEmpty(form["PaymentRemarks"])) ? string.Empty : Convert.ToString(form["PaymentRemarks"]));
-                    Obj.UserId = User.Identity.GetUserId();
+                    Obj.UserId = User.Identity.Name;
                     new OtherInvoiceDA().AddDebitCardPaymentDetailsOtherInvoice(Obj);
                 }
-                #endregion
-                #region Payment by Bank Deposit
+#endregion
+#region Payment by Bank Deposit
                 else if (TransactionMethod == 5)
                 {
                     BankPaymentDetail Obj = new BankPaymentDetail();
@@ -306,23 +381,35 @@ namespace Billing.Web.Controllers
                     Obj.BankDate = (string.IsNullOrEmpty(form["BankDateBankDeposit"])) ? string.Empty : Convert.ToString(form["BankDateBankDeposit"]);
                     Obj.InvoiceId = InvoiceId;
                     Obj.Notes = String.Format("Bank Deposit/Transfer Invoice Payment by {0}. - {1}", User.Identity.GetDisplayName(), (string.IsNullOrEmpty(form["PaymentRemarks"])) ? string.Empty : Convert.ToString(form["PaymentRemarks"]));
-                    Obj.UserId = User.Identity.GetUserId();
+                    Obj.UserId = User.Identity.Name;
                     new OtherInvoiceDA().AddBankDepositPaymentDetailsOtherInvoice(Obj);
                 }
-                #endregion
-                return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+
+#endregion
+                return RedirectToAction("Details", "OtherInvoice", new
+                {
+                id = InvoiceId
+                }
+
+                );
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return RedirectToAction("Details", "OtherInvoice", new { id = InvoiceId });
+                return RedirectToAction("Details", "OtherInvoice", new
+                {
+                id = InvoiceId
+                }
+
+                );
             }
         }
+
         private void chequeTransaction(ChequeDetails model)
         {
             IPChequeDetail ipcObj = new IPChequeDetail();
             ipcObj.AccountNo = model.AccountNo;
             ipcObj.Amount = model.Amount;
-            ipcObj.ApplicationUserId = User.Identity.GetUserId();
+            ipcObj.ApplicationUserId = User.Identity.Name;
             ipcObj.BankNames = model.BankNames;
             ipcObj.ChequeNo = model.ChequeNo;
             ipcObj.GeneralLedgerId = null;
@@ -336,7 +423,6 @@ namespace Billing.Web.Controllers
             ipcObj.BulkPayment = false;
             db.IPChequeDetails.Add(ipcObj);
             db.SaveChanges();
-
             OtherInvoiceLog ilObj = new OtherInvoiceLog();
             ilObj.ApplicationUserId = ipcObj.ApplicationUserId;
             ilObj.OtherInvoiceId = model.InvoiceId;
@@ -344,7 +430,6 @@ namespace Billing.Web.Controllers
             ilObj.SysDateTime = ipcObj.SysCreateDate;
             db.OtherInvoiceLogs.Add(ilObj);
             db.SaveChanges();
-
         }
     }
 }

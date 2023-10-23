@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Billing.Entities
 {
@@ -8,7 +9,7 @@ namespace Billing.Entities
         [Key]
         public int Id { get; set; }
         [StringLength(100)]
-        [Index("IX_FirstAndSecond", 1, IsUnique = true)]
+        //[Index("IX_FirstAndSecond", 1, IsUnique = true)]
         public string LedgerHead { get; set; }
         public LedgerType LedgerTypes { get; set; }
         public bool Editable { get; set; }

@@ -1,20 +1,29 @@
-﻿using System.Data.Entity;
 using System.Net;
-using System.Web.Mvc;
 using Billing.DAL;
 using Billing.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CompanyInfoController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private readonly ApplicationDbContext db;
+        public CompanyInfoController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
         // GET: CompanyInfo
         public ActionResult Index()
         {
-            return RedirectToAction("Edit", "CompanyInfo", new { id = 1 }); //View(db.CompanyInfos.ToList());
+            return RedirectToAction("Edit", "CompanyInfo", new
+            {
+            id = 1
+            }
+
+            ); //View(db.CompanyInfos.ToList());
         }
 
         // GET: CompanyInfo/Edit/5
@@ -22,13 +31,15 @@ namespace Billing.Web.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             CompanyInfo companyInfo = db.CompanyInfos.Find(id);
             if (companyInfo == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(companyInfo);
         }
 
@@ -43,8 +54,14 @@ namespace Billing.Web.Controllers
             {
                 db.Entry(companyInfo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit", "CompanyInfo", new { id = 1 });
+                return RedirectToAction("Edit", "CompanyInfo", new
+                {
+                id = 1
+                }
+
+                );
             }
+
             return View(companyInfo);
         }
 
@@ -54,6 +71,7 @@ namespace Billing.Web.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

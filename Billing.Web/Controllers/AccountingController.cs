@@ -1,31 +1,41 @@
-﻿using Billing.DAL;
+using Billing.DAL;
 using Billing.DAL.Helpers;
 using Billing.DAL.Parameters;
 using Billing.Entities;
 using Billing.ViewModel;
-using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web.Mvc;
 using Vereyon.Web;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountingController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+
+        public AccountingController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
+
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult LedgerHead()
         {
             return View(db.GeneralLeaderHeads.ToList());
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LedgerHead(GeneralLedgerHead model)
@@ -41,23 +51,26 @@ namespace Billing.Web.Controllers
                     obj.Status = true;
                     db.GeneralLeaderHeads.Add(obj);
                     db.SaveChanges();
-                    FlashMessage.Confirmation("New Ledger Head Added..");
+                    //FlashMessage.Confirmation("New Ledger Head Added..");
                     return RedirectToAction("LedgerHead", "Accounting");
                 }
                 catch (Exception ex)
                 {
-                    FlashMessage.Danger(ex.Message.ToString());
+                    //FlashMessage.Danger(ex.Message.ToString());
                     return RedirectToAction("LedgerHead", "Accounting");
                 }
             }
+
             return View();
         }
+
         public ActionResult Ledger()
         {
             GeneralVoucherPostingViewModel model = new GeneralVoucherPostingViewModel();
             model.GeneralLedgerHeads = db.GeneralLeaderHeads.Where(a => a.Editable == true).ToList();
             return View(model);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Ledger(GeneralVoucherPostingViewModel model)
@@ -65,12 +78,13 @@ namespace Billing.Web.Controllers
             bool status = false;
             if (!ModelState.IsValid)
             {
-                FlashMessage.Danger(ModelState.Values.ToString());
+                //FlashMessage.Danger(ModelState.Values.ToString());
                 return RedirectToAction("Ledger", "Accounting");
             }
+
             if (model == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
             else
             {
@@ -78,16 +92,25 @@ namespace Billing.Web.Controllers
                 Obj.Amount = model.Amount;
                 Obj.Notes = model.Notes;
                 Obj.LedgerHeadId = model.GeneralLedgerHeadId;
-                Obj.UserID = User.Identity.GetUserId();
+                Obj.UserID = User.Identity.Name;
                 Obj.LedgerDate = model.LedgerDate;
                 status = new AccountingDA().InsertGeneralVoucherPosting(Obj);
-                if (status) { FlashMessage.Confirmation("New Ledger Posted"); } else { FlashMessage.Danger("Some error occured!!"); }
+                if (status)
+                {
+                    //FlashMessage.Confirmation("New Ledger Posted");
+                }
+                else
+                {
+                    //FlashMessage.Danger("Some error occured!!");
+                }
+
                 return RedirectToAction("Ledger", "Accounting");
             }
         }
+
         public ActionResult LedgerList(string type)
         {
-            if(type == "Income")
+            if (type == "Income")
             {
                 List<GeneralLedgerListViewModel> model = new AccountingDA().GetGeneralLedgerList(1);
                 ViewBag._LedgerHead = new SelectList(db.GeneralLeaderHeads, "Id", "GeneralLedgerHeadName");
@@ -102,6 +125,7 @@ namespace Billing.Web.Controllers
                 return View(model);
             }
         }
+
         public PartialViewResult FilterLedgerList(string FromDate, string ToDate, int? LedgerHead, int? PaymentMethod, int? StatementType)
         {
             List<GeneralLedgerListViewModel> model = new List<GeneralLedgerListViewModel>();
@@ -110,7 +134,6 @@ namespace Billing.Web.Controllers
             string locLedgerHead = string.Empty;
             string locPaymentMethod = string.Empty;
             string locStatementType = string.Empty;
-
             if (!string.IsNullOrEmpty(FromDate))
             {
                 if (string.IsNullOrEmpty(ToDate) && LedgerHead == null && PaymentMethod == null)
@@ -122,9 +145,10 @@ namespace Billing.Web.Controllers
                     locFromDate = String.Format("WHERE CONVERT(varchar(10), [dbo].[GeneralLedgers].SysDateTime, 101) >= CONVERT(varchar(10), '{0}', 101) AND ", FromDate);
                 }
             }
+
             if (!string.IsNullOrEmpty(ToDate))
             {
-                if(LedgerHead == null && PaymentMethod == null)
+                if (LedgerHead == null && PaymentMethod == null)
                 {
                     if (string.IsNullOrEmpty(locFromDate))
                     {
@@ -147,11 +171,12 @@ namespace Billing.Web.Controllers
                     }
                 }
             }
-            if(LedgerHead != null)
+
+            if (LedgerHead != null)
             {
-                if(PaymentMethod == null)
+                if (PaymentMethod == null)
                 {
-                    if(string.IsNullOrEmpty(locFromDate) && string.IsNullOrEmpty(locToDate))
+                    if (string.IsNullOrEmpty(locFromDate) && string.IsNullOrEmpty(locToDate))
                     {
                         locLedgerHead = String.Format("WHERE [dbo].[GeneralLedgers].GeneralLedgerHeadId = {0} ", LedgerHead);
                     }
@@ -172,9 +197,10 @@ namespace Billing.Web.Controllers
                     }
                 }
             }
+
             if (PaymentMethod != null)
             {
-                if(string.IsNullOrEmpty(locFromDate) && string.IsNullOrEmpty(locToDate) && locLedgerHead == null)
+                if (string.IsNullOrEmpty(locFromDate) && string.IsNullOrEmpty(locToDate) && locLedgerHead == null)
                 {
                     locPaymentMethod = String.Format("WHERE [dbo].[GeneralLedgers].PaymentMethods = {0} ", PaymentMethod);
                 }
@@ -183,7 +209,8 @@ namespace Billing.Web.Controllers
                     locPaymentMethod = String.Format("[dbo].[GeneralLedgers].PaymentMethods = {0} ", PaymentMethod);
                 }
             }
-            if(string.IsNullOrEmpty(locFromDate) && string.IsNullOrEmpty(locToDate) && locLedgerHead == null && locPaymentMethod == null)
+
+            if (string.IsNullOrEmpty(locFromDate) && string.IsNullOrEmpty(locToDate) && locLedgerHead == null && locPaymentMethod == null)
             {
                 locStatementType = String.Format("WHERE [dbo].[GeneralLedgers].StatementTypes = {0} ", StatementType);
             }
@@ -196,11 +223,13 @@ namespace Billing.Web.Controllers
             model = new AccountingDA().FilterGeneralLedgerList(Query);
             return PartialView("LedgerListPartial", model);
         }
+
         public ActionResult FloatingCheque()
         {
             List<FloatChequeViewModel> model = new AccountingDA().GetFloatingChequeList((int)ChequeStatus.Floating);
             return View(model);
         }
+
         [HttpGet]
         public ActionResult ChequeRealize(int inv, string Name, int cheid)
         {
@@ -208,13 +237,13 @@ namespace Billing.Web.Controllers
             {
                 if (inv < 1 || string.IsNullOrEmpty(Name) || cheid < 1)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return NotFound();
                 }
                 else
                 {
                     IPChequeDetail chequeObj = db.IPChequeDetails.Find(cheid);
                     Invoice invObj = db.Invoices.Find(inv);
-                    if(chequeObj != null && invObj != null)
+                    if (chequeObj != null && invObj != null)
                     {
                         ChequeRealizeViewModel Obj = new ChequeRealizeViewModel();
                         Obj.AccountNo = chequeObj.AccountNo;
@@ -231,7 +260,7 @@ namespace Billing.Web.Controllers
                     }
                     else
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return NotFound();
                     }
                 }
             }
@@ -240,42 +269,36 @@ namespace Billing.Web.Controllers
                 throw;
             }
         }
+
         [HttpPost]
         public ActionResult ChequeRealize(ChequeRealizeViewModel model)
         {
             if (ModelState.IsValid)
             {
                 int GeneralLedgerHeadId = (int)db.BankAccountLedgerHeads.Find(1).GeneralLedgerHeadId;
-                GeneralLedger glObj = new GeneralLedger { Amount = model.Amount, ApplicationUserId = User.Identity.GetUserId(), GeneralLedgerHeadId = GeneralLedgerHeadId, Notes = model.RealizationRemarks + " - " + model.Remarks + " - " + "Cheque Realization", PaymentMethods = PaymentMethod.Cheque, StatementTypes = TransactionType.Income, SysDateTime = DateTime.Now, GeneralLedgerType = LedgerType.Credit };
+                GeneralLedger glObj = new GeneralLedger{Amount = model.Amount, ApplicationUserId = User.Identity.Name, GeneralLedgerHeadId = GeneralLedgerHeadId, Notes = model.RealizationRemarks + " - " + model.Remarks + " - " + "Cheque Realization", PaymentMethods = PaymentMethod.Cheque, StatementTypes = TransactionType.Income, SysDateTime = DateTime.Now, GeneralLedgerType = LedgerType.Credit};
                 db.GeneralLedgers.Add(glObj);
                 db.SaveChanges();
-
                 Agent agent = db.Agents.Find(model.Agents.Id);
                 agent.Balance = (agent.Balance - model.Amount);
                 db.Entry(agent).State = EntityState.Modified;
                 db.SaveChanges();
-
-                AgentLedger alObj = new AgentLedger { AgentId = model.Agents.Id, AgentLedgerHeadId = 3, Amount = model.Amount, ApplicationUserId = glObj.ApplicationUserId, Balance = agent.Balance, Remarks = glObj.Notes, SystemDate = glObj.SysDateTime };
+                AgentLedger alObj = new AgentLedger{AgentId = model.Agents.Id, AgentLedgerHeadId = 3, Amount = model.Amount, ApplicationUserId = glObj.ApplicationUserId, Balance = agent.Balance, Remarks = glObj.Notes, SystemDate = glObj.SysDateTime};
                 db.AgentLedgers.Add(alObj);
                 db.SaveChanges();
-
                 BankAccount baObj = db.BankAccounts.Find(model.BankAccountId);
                 baObj.Balance = (baObj.Balance + model.Amount);
                 db.Entry(baObj).State = EntityState.Modified;
                 db.SaveChanges();
-
-                BankAccountLedger bclObj = new BankAccountLedger { Amount = model.Amount, ApplicationUserId = glObj.ApplicationUserId, Balance = baObj.Balance, BankAccountId = model.BankAccountId, BankAccountLedgerHeadId = 1, LedgerTypes = LedgerType.Credit, Notes = glObj.Notes, PaymentMethods = PaymentMethod.Cheque, RelationId = null, SysDateTime = glObj.SysDateTime };
+                BankAccountLedger bclObj = new BankAccountLedger{Amount = model.Amount, ApplicationUserId = glObj.ApplicationUserId, Balance = baObj.Balance, BankAccountId = model.BankAccountId, BankAccountLedgerHeadId = 1, LedgerTypes = LedgerType.Credit, Notes = glObj.Notes, PaymentMethods = PaymentMethod.Cheque, RelationId = null, SysDateTime = glObj.SysDateTime};
                 db.BankAccountLedgers.Add(bclObj);
                 db.SaveChanges();
-
-                InvoicePayment ipObj = new InvoicePayment { Amount = model.Amount, ApplicationUserId = glObj.ApplicationUserId, GeneralLedgerId = glObj.Id, InvoiceId = model.InvoiceId, PaymentMethods = PaymentMethod.Cheque, Remarks = model.RealizationRemarks + " - " + model.Remarks + " - " + "Cheque Realization", SysDateTime = glObj.SysDateTime, AgentLedgerId = alObj.Id, BankAccountLedgerId = bclObj.Id };
+                InvoicePayment ipObj = new InvoicePayment{Amount = model.Amount, ApplicationUserId = glObj.ApplicationUserId, GeneralLedgerId = glObj.Id, InvoiceId = model.InvoiceId, PaymentMethods = PaymentMethod.Cheque, Remarks = model.RealizationRemarks + " - " + model.Remarks + " - " + "Cheque Realization", SysDateTime = glObj.SysDateTime, AgentLedgerId = alObj.Id, BankAccountLedgerId = bclObj.Id};
                 db.InvoicePayments.Add(ipObj);
                 db.SaveChanges();
-
-                InvoiceLog ilObj = new InvoiceLog { ApplicationUserId = glObj.ApplicationUserId, InvoiceId = model.InvoiceId, Remarks = "Payment Received by Cheque Transaction - Realization", SysDateTime = glObj.SysDateTime };
+                InvoiceLog ilObj = new InvoiceLog{ApplicationUserId = glObj.ApplicationUserId, InvoiceId = model.InvoiceId, Remarks = "Payment Received by Cheque Transaction - Realization", SysDateTime = glObj.SysDateTime};
                 db.InvoiceLogs.Add(ilObj);
                 db.SaveChanges();
-
                 IPChequeDetail ipchObj = db.IPChequeDetails.Find(model.IPChequeDetailId);
                 ipchObj.GeneralLedgerId = glObj.Id;
                 ipchObj.InvoicePaymentId = ipObj.Id;
@@ -283,11 +306,10 @@ namespace Billing.Web.Controllers
                 ipchObj.Status = ChequeStatus.Passed;
                 db.Entry(ipchObj).State = EntityState.Modified;
                 db.SaveChanges();
-
                 bclObj.RelationId = ipchObj.Id;
                 db.Entry(ipchObj).State = EntityState.Modified;
                 db.SaveChanges();
-                FlashMessage.Confirmation("Floating Cheque Realized");
+                //FlashMessage.Confirmation("Floating Cheque Realized");
                 return RedirectToAction("FloatingCheque", "Accounting");
             }
             else
@@ -295,6 +317,7 @@ namespace Billing.Web.Controllers
                 return RedirectToAction("FloatingCheque", "Accounting");
             }
         }
+
         public PartialViewResult GetBankAccounts(int BankId)
         {
             try
@@ -309,25 +332,29 @@ namespace Billing.Web.Controllers
                 return null;
             }
         }
+
         public ActionResult CashInHand()
         {
             ViewBag.CashInHand = new AccountingDA().GetCurrentCashInHand();
             return View();
         }
-        
+
         public ActionResult EditHead(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             GeneralLedgerHead glHead = db.GeneralLeaderHeads.Find(id);
             if (glHead == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(glHead);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditHead(GeneralLedgerHead glHead)
@@ -337,9 +364,18 @@ namespace Billing.Web.Controllers
                 glHead.Editable = true;
                 db.Entry(glHead).State = EntityState.Modified;
                 int i = db.SaveChanges();
-                if (i > 0) { FlashMessage.Confirmation("Ledger Head Updated.."); } else { FlashMessage.Danger("Sorry, Something Went Wrong.."); }
+                if (i > 0)
+                {
+                    //FlashMessage.Confirmation("Ledger Head Updated..");
+                }
+                else
+                {
+                    //FlashMessage.Danger("Sorry, Something Went Wrong..");
+                }
+
                 return RedirectToAction("LedgerHead");
             }
+
             return View(glHead);
         }
     }

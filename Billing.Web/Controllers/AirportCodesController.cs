@@ -1,18 +1,22 @@
-﻿using System.Data;
-using System.Data.Entity;
+using System.Data;
 using System.Linq;
 using System.Net;
-using System.Web.Mvc;
 using Billing.DAL;
 using Billing.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AirportCodesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private readonly ApplicationDbContext db;
+        public AirportCodesController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
         // GET: AirportCodes
         public ActionResult Index()
         {
@@ -24,13 +28,15 @@ namespace Billing.Web.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             AirportCode airportCode = db.AirportCodes.Find(id);
             if (airportCode == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(airportCode);
         }
 
@@ -62,13 +68,15 @@ namespace Billing.Web.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             AirportCode airportCode = db.AirportCodes.Find(id);
             if (airportCode == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(airportCode);
         }
 
@@ -77,7 +85,7 @@ namespace Billing.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Country,Code")] AirportCode airportCode)
+        public ActionResult Edit([Bind(new string[] { "Id", "Name","Country","Code" })] AirportCode airportCode)
         {
             if (ModelState.IsValid)
             {
@@ -85,6 +93,7 @@ namespace Billing.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(airportCode);
         }
 
@@ -93,8 +102,9 @@ namespace Billing.Web.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             AirportCode airportCode = db.AirportCodes.Find(id);
             db.AirportCodes.Remove(airportCode);
             db.SaveChanges();
@@ -118,6 +128,7 @@ namespace Billing.Web.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

@@ -1,18 +1,24 @@
-﻿using Billing.DAL;
+using Billing.DAL;
 using Billing.Entities;
 using Billing.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        public HomeController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
         public ActionResult Index()
         {
             List<InvoiceListViewModel> ilObj = new SearchDA().GetLatestInvoiceList();
@@ -28,10 +34,11 @@ namespace Billing.Web.Controllers
             ViewBag.UserList = new SelectList(db.Users.OrderBy(x => x.PersonName).ToList(), "Id", "PersonName");
             return View(model);
         }
+
         public PartialViewResult Search(int? invoiceID, string ToDate, string FromDate, string SearchBy, string SearchValue)
         {
             List<InvoiceListViewModel> lstLstObj = new List<InvoiceListViewModel>();
-            #region SearchByInvoiceID
+#region SearchByInvoiceID
             if (invoiceID > 0 && invoiceID != null)
             {
                 var invoices = db.Invoices.Include(i => i.Agents).Include(i => i.AirlinesS).Include(i => i.Vendors).Where(a => a.Id == invoiceID).FirstOrDefault(); //.OrderBy(a => a.SysCreateDate).ToList();
@@ -39,22 +46,22 @@ namespace Billing.Web.Controllers
                 {
                     var iTotal = db.InvoiceNames.Where(x => x.InvoiceId == invoices.Id).GroupBy(x => x.InvoiceId == invoices.Id).Select(g => new
                     {
-                        Total = g.Sum(s => s.Amount)
-                    });
+                    Total = g.Sum(s => s.Amount)});
                     double vTotal = 0;
                     if (iTotal.Count() > 0)
                     {
                         vTotal = Convert.ToDouble(iTotal.FirstOrDefault().Total);
                     }
+
                     var iPaid = db.InvoicePayments.Where(x => x.InvoiceId == invoices.Id).GroupBy(x => x.InvoiceId == invoices.Id).Select(g => new
                     {
-                        Paid = g.Sum(s => s.Amount)
-                    });
+                    Paid = g.Sum(s => s.Amount)});
                     double vPaid = 0;
                     if (iPaid.Count() > 0)
                     {
                         vPaid = iPaid.FirstOrDefault().Paid;
                     }
+
                     InvoiceListViewModel _vObj = new InvoiceListViewModel();
                     _vObj.InvoiceId = invoices.Id;
                     _vObj.SysCreateDate = invoices.SysCreateDate;
@@ -65,7 +72,6 @@ namespace Billing.Web.Controllers
                     _vObj.Refund = Convert.ToDouble(0);
                     _vObj.Due = Convert.ToDouble(vTotal) - Convert.ToDouble(vPaid);
                     _vObj.PersonName = invoices.ApplicationUsers.PersonName;
-
                     lstLstObj.Add(_vObj);
                     return PartialView("Search", lstLstObj);
                 }
@@ -74,8 +80,8 @@ namespace Billing.Web.Controllers
                     return PartialView("Search", lstLstObj);
                 }
             }
-            #endregion
-            #region SearchByLastNamePnrTicketNo
+#endregion
+#region SearchByLastNamePnrTicketNo
             else if (Convert.ToInt32(SearchBy) > 0)
             {
                 int InvID = 0;
@@ -123,12 +129,11 @@ namespace Billing.Web.Controllers
                     }
                 }
             }
-            #endregion
-            #region SearchByDateOrDateRange
+#endregion
+#region SearchByDateOrDateRange
             else if (!string.IsNullOrEmpty(FromDate))
             {
-                
-                if(string.IsNullOrEmpty(ToDate))
+                if (string.IsNullOrEmpty(ToDate))
                 {
                     lstLstObj = new SearchDA().SearchInvoicesByDate(FromDate);
                     return PartialView("Search", lstLstObj);
@@ -138,20 +143,24 @@ namespace Billing.Web.Controllers
                     lstLstObj = new SearchDA().SearchInvoicesByDateRange(FromDate, ToDate);
                     return PartialView("Search", lstLstObj);
                 }
-            } 
-            #endregion
+            }
+
+#endregion
             return PartialView("Search", lstLstObj);
         }
+
         public PartialViewResult SearchForHome(string ToDate, string FromDate, string UserId)
         {
             List<InvoiceListViewModel> lstLstObj = new SearchDA().SearchInvoicesByDateRangeForHome(FromDate, ToDate, UserId);
             return PartialView("Invoice/InvoiceList", lstLstObj);
         }
+
         public PartialViewResult DraftSearchForHome(string ToDate, string FromDate, string UserId)
         {
             List<InvoiceListViewModel> lstLstObj = new SearchDA().SearchDraftByDateRangeForHome(FromDate, ToDate, UserId);
             return PartialView("Home/DraftList", lstLstObj);
         }
+
         private List<InvoiceListViewModel> searchInvoiceByID(int InvID)
         {
             List<InvoiceListViewModel> _lstLstObj = new List<InvoiceListViewModel>();
@@ -160,22 +169,22 @@ namespace Billing.Web.Controllers
             {
                 var iTotal = db.InvoiceNames.Where(x => x.InvoiceId == invoices.Id).GroupBy(x => x.InvoiceId == invoices.Id).Select(g => new
                 {
-                    Total = g.Sum(s => s.Amount)
-                });
+                Total = g.Sum(s => s.Amount)});
                 double vTotal = 0;
                 if (iTotal.Count() > 0)
                 {
                     vTotal = Convert.ToDouble(iTotal.FirstOrDefault().Total);
                 }
+
                 var iPaid = db.InvoicePayments.Where(x => x.InvoiceId == invoices.Id).GroupBy(x => x.InvoiceId == invoices.Id).Select(g => new
                 {
-                    Paid = g.Sum(s => s.Amount)
-                });
+                Paid = g.Sum(s => s.Amount)});
                 double vPaid = 0;
                 if (iPaid.Count() > 0)
                 {
                     vPaid = iPaid.FirstOrDefault().Paid;
                 }
+
                 InvoiceListViewModel _vObj = new InvoiceListViewModel();
                 _vObj.InvoiceId = invoices.Id;
                 _vObj.SysCreateDate = invoices.SysCreateDate;
@@ -186,7 +195,6 @@ namespace Billing.Web.Controllers
                 _vObj.Refund = Convert.ToDouble(0);
                 _vObj.Due = Convert.ToDouble(vTotal) - Convert.ToDouble(vPaid);
                 _vObj.PersonName = invoices.ApplicationUsers.PersonName;
-
                 _lstLstObj.Add(_vObj);
                 return _lstLstObj;
             }
@@ -195,6 +203,7 @@ namespace Billing.Web.Controllers
                 return _lstLstObj;
             }
         }
+
         public JsonResult GetQuickAgentContact(int AgentId)
         {
             try
@@ -204,41 +213,26 @@ namespace Billing.Web.Controllers
                 {
                     return Json(new
                     {
-                        Telephone = string.Empty,
-                        Mobile = string.Empty,
-                        FaxNo = string.Empty,
-                        Address = string.Empty,
-                        PostCode = string.Empty,
-                        Email = string.Empty,
-                        Remarks = string.Empty,
-                    }, JsonRequestBehavior.AllowGet);
+                    Telephone = string.Empty, Mobile = string.Empty, FaxNo = string.Empty, Address = string.Empty, PostCode = string.Empty, Email = string.Empty, Remarks = string.Empty, }
+
+                    );
                 }
                 else
                 {
                     return Json(new
                     {
-                        Telephone = Obj.Telephone,
-                        Mobile = Obj.Mobile,
-                        FaxNo = Obj.FaxNo,
-                        Address = Obj.Address,
-                        PostCode = Obj.Postcode,
-                        Email = Obj.Email,
-                        Remarks = Obj.Remarks,
-                    }, JsonRequestBehavior.AllowGet);
+                    Telephone = Obj.Telephone, Mobile = Obj.Mobile, FaxNo = Obj.FaxNo, Address = Obj.Address, PostCode = Obj.Postcode, Email = Obj.Email, Remarks = Obj.Remarks, }
+
+                    );
                 }
             }
             catch (Exception ex)
             {
                 return Json(new
                 {
-                    Telephone = string.Empty,
-                    Mobile = string.Empty,
-                    FaxNo = string.Empty,
-                    Address = string.Empty,
-                    PostCode = string.Empty,
-                    Email = string.Empty,
-                    Remarks = string.Empty,
-                }, JsonRequestBehavior.AllowGet);
+                Telephone = string.Empty, Mobile = string.Empty, FaxNo = string.Empty, Address = string.Empty, PostCode = string.Empty, Email = string.Empty, Remarks = string.Empty, }
+
+                );
             }
         }
     }

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
@@ -12,10 +12,10 @@ namespace Billing.Entities
     {
         [Required]
         public string PersonName { get; set; }
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         [MaxLength(20), MinLength(6)]
         public string MobileNo { get; set; }
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         [MaxLength(50), MinLength(6)]
         public string NationalId { get; set; }
         public MaritialStatus MaritialStatus { get; set; }
@@ -26,10 +26,11 @@ namespace Billing.Entities
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-            userIdentity.AddClaim(new Claim("DisplayName", PersonName));
-            return userIdentity;
+            var userIdentity = await manager.CreateAsync(this);
+            // Add custom user claims here\
+            await manager.AddClaimAsync(this, new Claim("DisplayName", PersonName));
+            var claimsIdentity = await this.GenerateUserIdentityAsync(manager);
+            return claimsIdentity;
         }
     }
 }

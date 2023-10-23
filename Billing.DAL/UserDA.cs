@@ -1,7 +1,7 @@
-﻿using Billing.ViewModel;
+using Billing.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Billing.DAL
 {
@@ -15,7 +15,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetAirlinesList_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -30,6 +29,7 @@ namespace Billing.DAL
                             airList.Add(air);
                         }
                     }
+
                     reader.Close();
                     return airList;
                 }

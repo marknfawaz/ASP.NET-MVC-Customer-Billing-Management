@@ -23,9 +23,8 @@ namespace Billing.DAL.Helpers
             return BankName;
         }
 
-        public static double getBankBalance(int AccountId)
+        public static double getBankBalance(int AccountId, ApplicationDbContext db)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
             BankAccount Balance = db.BankAccounts.Find(AccountId);
             return Balance.Balance;
         }

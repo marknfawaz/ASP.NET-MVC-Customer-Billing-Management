@@ -37,7 +37,7 @@
                         int selected = (int)Names.PassengerTypes;
                         <tr>
                             <td>
-                                @Html.DropDownList(String.Format("PassengerTypes{0}", k), EnumHelper.GetSelectList(typeof(Billing.ViewModel.PassengerType)), "Pax Type", new { @class = "form-control" })
+                                @Html.DropDownList(String.Format("PassengerTypes{0}", k), Html.GetEnumSelectList(typeof(Billing.Entities.PassengerType)), "Pax Type", new { @class = "form-control" })
                                 <script>
                                     var index = '@k';
                                     var value = '@selected';

@@ -1,10 +1,10 @@
-﻿using Billing.DAL.Parameters;
+using Billing.DAL.Parameters;
 using Billing.Entities;
 using Billing.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Billing.DAL
 {
@@ -18,16 +18,13 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetCurrentCashInHand_SP");
                     //SqlDataReader reader = DataAccess.ExecuteReader(command);
                     var returnParameter = command.Parameters.Add("@NewSeqVal", SqlDbType.Float);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
-
                     //connection.Open();
                     command.ExecuteNonQuery();
                     Balance = Convert.ToDouble(returnParameter.Value);
-
                     return Balance;
                 }
             }
@@ -36,6 +33,7 @@ namespace Billing.DAL
                 return Balance;
             }
         }
+
         public List<FloatChequeViewModel> GetFloatingChequeList(int chequeStatus)
         {
             List<FloatChequeViewModel> Obj = new List<FloatChequeViewModel>();
@@ -44,7 +42,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetFloatingChequeList_SP");
                     DataAccess.AddInParameter(command, "@Status", SqlDbType.Int, chequeStatus);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -66,6 +63,7 @@ namespace Billing.DAL
                             Obj.Add(cheques);
                         }
                     }
+
                     reader.Close();
                     return Obj;
                 }
@@ -75,6 +73,7 @@ namespace Billing.DAL
                 return Obj;
             }
         }
+
         public List<FloatChequeViewModel> GetBulkFloatingChequeList(int chequeStatus)
         {
             List<FloatChequeViewModel> Obj = new List<FloatChequeViewModel>();
@@ -83,7 +82,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetBulkFloatingChequeList_SP");
                     DataAccess.AddInParameter(command, "@Status", SqlDbType.Int, chequeStatus);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -105,6 +103,7 @@ namespace Billing.DAL
                             Obj.Add(cheques);
                         }
                     }
+
                     reader.Close();
                     return Obj;
                 }
@@ -114,6 +113,7 @@ namespace Billing.DAL
                 return Obj;
             }
         }
+
         public bool InsertGeneralVoucherPosting(GeneralVoucherPosting model)
         {
             try
@@ -122,7 +122,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "InsertGeneralVoucherPosting_SP");
                     DataAccess.AddInParameter(command, "@LedgerHeadId", SqlDbType.Int, model.LedgerHeadId);
                     DataAccess.AddInParameter(command, "@Amount", SqlDbType.Float, model.Amount);
@@ -138,6 +137,7 @@ namespace Billing.DAL
                 return false;
             }
         }
+
         public List<GeneralLedgerListViewModel> GetGeneralLedgerList(int StatementType)
         {
             List<GeneralLedgerListViewModel> ledgerList = new List<GeneralLedgerListViewModel>();
@@ -146,7 +146,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetGeneralLedgerList_SP");
                     DataAccess.AddInParameter(command, "@StatementType", SqlDbType.Int, StatementType);
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
@@ -165,6 +164,7 @@ namespace Billing.DAL
                             ledgerList.Add(Obj);
                         }
                     }
+
                     reader.Close();
                     return ledgerList;
                 }
@@ -174,6 +174,7 @@ namespace Billing.DAL
                 return ledgerList;
             }
         }
+
         public List<GeneralLedgerListViewModel> FilterGeneralLedgerList(string Query)
         {
             List<GeneralLedgerListViewModel> ledgerList = new List<GeneralLedgerListViewModel>();
@@ -183,7 +184,6 @@ namespace Billing.DAL
                 {
                     SqlCommand command = new SqlCommand(Query, connection);
                     //connection.Open();
-
                     SqlDataReader reader = command.ExecuteReader();
                     if (reader != null)
                     {
@@ -200,6 +200,7 @@ namespace Billing.DAL
                             ledgerList.Add(Obj);
                         }
                     }
+
                     reader.Close();
                     return ledgerList;
                 }
@@ -209,6 +210,7 @@ namespace Billing.DAL
                 return ledgerList;
             }
         }
+
         public List<CompanyInfo> GetCompanyInformation()
         {
             List<CompanyInfo> lstObj = new List<CompanyInfo>();
@@ -217,7 +219,6 @@ namespace Billing.DAL
                 using (SqlConnection connection = DataAccess.CreateConnection())
                 {
                     SqlCommand command = DataAccess.CreateCommand(connection);
-
                     DataAccess.CreateStoredprocedure(command, "GetCompanyInformation_SP");
                     SqlDataReader reader = DataAccess.ExecuteReader(command);
                     if (reader != null)
@@ -241,6 +242,7 @@ namespace Billing.DAL
                             lstObj.Add(Obj);
                         }
                     }
+
                     reader.Close();
                     return lstObj;
                 }

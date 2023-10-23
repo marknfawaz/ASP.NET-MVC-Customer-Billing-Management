@@ -1,4 +1,3 @@
-﻿
 using Billing.DAL;
 using Billing.Entities;
 using Billing.ViewModel;
@@ -6,19 +5,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ReportController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+        public ReportController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
+
         // GET: Report
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult TicketReport()
         {
             TicketingReportViewModel model = new TicketingReportViewModel();
@@ -29,10 +36,11 @@ namespace Billing.Web.Controllers
             ViewBag.AgentList = new SelectList(db.Agents.OrderBy(a => a.Name).ToList(), "Id", "Name");
             return View(model);
         }
+
         public PartialViewResult FilterTicketingReport(int AgentId, int VendorId, string Starting, string Finising)
         {
             TicketingReportViewModel model = new TicketingReportViewModel();
-            if(AgentId == 0 && VendorId == 0)
+            if (AgentId == 0 && VendorId == 0)
             {
                 model.TicketReport = new ReportDA().GetTicketingReportByDateRange(Starting, Finising);
             }
@@ -48,14 +56,17 @@ namespace Billing.Web.Controllers
             {
                 model.TicketReport = new ReportDA().GetTicketingReportByDateRangeAgentVendor(Starting, Finising, AgentId, VendorId);
             }
+
             return PartialView("Report/_TicketingReport", model.TicketReport);
         }
+
         public PartialViewResult FakeDailyStatement(string SearchDate)
         {
             TicketingReportViewModel Obj = new TicketingReportViewModel();
             Obj.DailyStatement = new ReportDA().GetDailyCollectionSummary(SearchDate);
             return PartialView("Report/FakeDailyStatement", Obj);
         }
+
         public ActionResult MakeInvoicePayment()
         {
             List<InvoicePaymentViewModel> lstObj = new List<InvoicePaymentViewModel>();
@@ -73,7 +84,8 @@ namespace Billing.Web.Controllers
                 Obj.Received = transactions.Where(a => a.InvoiceId == InvIds[i]).Select(x => x.Amount).Sum();
                 lstObj.Add(Obj);
             }
+
             return View();
-        }        
+        }
     }
 }

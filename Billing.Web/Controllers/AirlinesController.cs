@@ -1,19 +1,23 @@
-﻿using Billing.DAL;
+using Billing.DAL;
 using Billing.Entities;
 using Billing.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Net;
-using System.Web.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AirlinesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private readonly ApplicationDbContext db;
+        public AirlinesController(ApplicationDbContext applicationDbContext)
+        {
+            db = applicationDbContext;
+        }
         // GET: Airlines
         public ActionResult Index()
         {
@@ -26,13 +30,15 @@ namespace Billing.Web.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             Airlines airlines = db.Airliness.Find(id);
             if (airlines == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(airlines);
         }
 
@@ -47,7 +53,7 @@ namespace Billing.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Code")] Airlines airlines)
+        public ActionResult Create([Bind(new string[] { "Id","Name","Code" })] Airlines airlines)
         {
             if (ModelState.IsValid)
             {
@@ -71,13 +77,15 @@ namespace Billing.Web.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             Airlines airlines = db.Airliness.Find(id);
             if (airlines == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(airlines);
         }
 
@@ -86,7 +94,7 @@ namespace Billing.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Code")] Airlines airlines)
+        public ActionResult Edit([Bind(new string[] {"Id", "Name", "Code" })] Airlines airlines)
         {
             if (ModelState.IsValid)
             {
@@ -94,6 +102,7 @@ namespace Billing.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(airlines);
         }
 
@@ -102,13 +111,15 @@ namespace Billing.Web.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return NotFound();
             }
+
             Airlines airlines = db.Airliness.Find(id);
             if (airlines == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
+
             return View(airlines);
         }
 
@@ -129,6 +140,7 @@ namespace Billing.Web.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

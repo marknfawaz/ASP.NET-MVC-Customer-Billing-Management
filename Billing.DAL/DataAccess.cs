@@ -1,32 +1,25 @@
-﻿using System;
+using System;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace Billing.DAL
 {
     public static class DataAccess
     {
-
         private static String ConnectionString { get; set; }
 
         static DataAccess()
         {
             String dataPassKey = "IIM@cda2011";
-
-            String encryptedConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BillingCString"].ConnectionString;
-
+            String encryptedConnectionString = ConfigurationManager.Configuration.GetConnectionString("BillingCString");
             //SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(CryptoLib.DecryptStringAES(encryptedConnectionString, dataPassKey));
             SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(encryptedConnectionString);
-
             //for Nepal server
             //SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(encryptedConnectionString);
-
             ConnectionString = connectionStringBuilder.ConnectionString;
-            //GlobalSettings.DatabaseName = connectionStringBuilder.InitialCatalog;
-            //GlobalSettings.DBServerName = connectionStringBuilder.DataSource;
-
-
-
+        //GlobalSettings.DatabaseName = connectionStringBuilder.InitialCatalog;
+        //GlobalSettings.DBServerName = connectionStringBuilder.DataSource;
         }
 
         public static SqlConnection CreateConnection()
@@ -40,8 +33,6 @@ namespace Billing.DAL
         {
             return connection.CreateCommand();
         }
-
-
 
         public static void CreateStoredprocedure(SqlCommand command, String storedProcedureName)
         {
@@ -61,6 +52,7 @@ namespace Billing.DAL
         {
             command.Parameters.Clear();
         }
+
         public static void AddOutParameter(SqlCommand command, String parameterName, SqlDbType paramaterType, Object paramaterValue)
         {
             command.Parameters.Add(parameterName, paramaterType);
@@ -78,11 +70,11 @@ namespace Billing.DAL
         //    command.Transaction = transction;
         //    return command.ExecuteNonQuery();
         //}
-
         public static int ExecuteNonQuery(SqlCommand command)
         {
             return command.ExecuteNonQuery();
         }
+
         public static int ExecuteNonQuery(SqlCommand command, SqlTransaction tran)
         {
             command.Transaction = tran;

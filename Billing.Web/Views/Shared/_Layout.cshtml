@@ -38,8 +38,8 @@
                     <img src="~/assets/img/logo.jpg" />
                 </a>
             </div>
-            @using Microsoft.AspNet.Identity
-            @if (Request.IsAuthenticated)
+            @using Microsoft.AspNetCore.Identity
+            @if (User.Identity.IsAuthenticated)
             {
                 <!--Main navigational menu-->
                 <div id="navbar" class="navbar-collapse collapse">
@@ -168,7 +168,7 @@
                             <h4 class="modal-title">Invoice Info</h4>
                         </div>
                         <div class="modal-body" id="modal-body">
-                            @using (Html.BeginForm("Confirm", "Invoice", null, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "invoiceForm" }))
+                            @using (Html.BeginForm("Confirm", "Invoice", null, FormMethod.Post, null, new { @class = "form-horizontal", role = "form", @id = "invoiceForm" }))
                             {
                                 <div class="form-group">
                                     <label class="control-label col-md-2">GDS</label>
@@ -267,7 +267,6 @@
                 </div>
             </div>
             <!--End of Create Invoice Modal-->
-            @Html.RenderFlashMessages()
             @RenderBody()
             <hr />
             <footer>

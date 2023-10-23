@@ -1,0 +1,14 @@
+using Microsoft.AspNetCore.Owin;
+using Microsoft.AspNetCore.Builder;
+
+[assembly: OwinStartupAttribute(typeof(Billing.Web.Startup))]
+namespace Billing.Web
+{
+    public partial class Startup
+    {
+        public void Configuration(IApplicationBuilder app)
+        {
+            ConfigureAuth(app);
+        }
+    }
+}

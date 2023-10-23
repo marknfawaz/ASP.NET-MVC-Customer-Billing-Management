@@ -8,7 +8,7 @@ namespace Billing.Entities
         [Key]
         public int Id { get; set; }
         [StringLength(255)]
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         public string LedgerHead { get; set; }
         public LedgerType LedgerTypes { get; set; }
         public bool Edit { get; set; }
