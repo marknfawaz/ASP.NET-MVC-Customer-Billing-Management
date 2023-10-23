@@ -16,7 +16,7 @@ using System.Web.Script.Serialization;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class OtherInvoiceController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

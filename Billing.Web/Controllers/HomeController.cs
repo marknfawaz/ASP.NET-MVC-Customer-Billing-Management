@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

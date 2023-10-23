@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class AirlinesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

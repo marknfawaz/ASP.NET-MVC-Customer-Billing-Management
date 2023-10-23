@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class VendorController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

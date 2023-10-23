@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

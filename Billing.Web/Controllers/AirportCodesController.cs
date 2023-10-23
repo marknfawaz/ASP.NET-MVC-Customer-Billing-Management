@@ -8,7 +8,7 @@ using Billing.Entities;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class AirportCodesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

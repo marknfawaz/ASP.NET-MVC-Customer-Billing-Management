@@ -6,7 +6,7 @@ using Billing.Entities;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class CompanyInfoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

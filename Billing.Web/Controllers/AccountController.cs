@@ -15,7 +15,7 @@ using Billing.ViewModel;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

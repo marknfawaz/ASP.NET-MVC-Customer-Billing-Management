@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class ReportController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

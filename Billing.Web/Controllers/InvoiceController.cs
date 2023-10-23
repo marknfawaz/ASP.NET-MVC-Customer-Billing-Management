@@ -16,7 +16,7 @@ using Billing.DAL.Parameters;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class InvoiceController : Controller
     {
         #region LocalVariables

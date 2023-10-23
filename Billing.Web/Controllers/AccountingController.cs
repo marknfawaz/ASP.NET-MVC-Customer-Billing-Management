@@ -14,7 +14,7 @@ using Vereyon.Web;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class AccountingController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

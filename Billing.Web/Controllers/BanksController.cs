@@ -13,7 +13,7 @@ using Billing.DAL.Helpers;
 
 namespace Billing.Web.Controllers
 {
-    [Authorize]
+   //[Authorize]
     public class BanksController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
