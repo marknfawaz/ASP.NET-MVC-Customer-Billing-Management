@@ -742,7 +742,6 @@ namespace Billing.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Response.Write(id);
             return View();
         }
         public ActionResult Delete(int? id)

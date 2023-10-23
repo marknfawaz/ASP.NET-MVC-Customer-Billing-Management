@@ -1099,7 +1099,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
@@ -1232,7 +1231,6 @@
     <Content Include="Views\Shared\Invoice\RemarkList.cshtml" />
     <Content Include="Views\Invoice\updateSegment.cshtml" />
     <Content Include="Views\Report\TicketReport.cshtml" />
-    <Content Include="Views\Shared\Report\_TicketingReport.cshtml" />
     <Content Include="Views\Shared\Report\FakeDailyStatement.cshtml" />
   </ItemGroup>
   <ItemGroup>
